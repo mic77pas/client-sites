@@ -7,7 +7,7 @@ export default function Header() {
       <div className="flex flex-row items-center justify-between w-full max-w-7xl">
         <Link href="/">
           <Image
-            src="/nick.png"
+            src="/nick2.png"
             alt="Nikita Karpov"
             width={60}
             height={60}
