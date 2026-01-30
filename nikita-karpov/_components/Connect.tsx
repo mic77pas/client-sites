@@ -5,9 +5,9 @@ export default function Connect() {
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-md">
             <h2 className="font-montserrat text-3xl tracking-tight">Connect</h2>
-            <p className="mt-2 text-white/70">
+            {/* <p className="mt-2 text-white/70">
               Quick message. Simple. No fluff.
-            </p>
+            </p> */}
 
             <div className="mt-6 space-y-3 text-sm">
               <a
@@ -33,14 +33,14 @@ export default function Connect() {
                 >
                   YouTube
                 </a>
-                <a
+                {/* <a
                   className="hover:text-white transition"
                   href="#"
                   target="_blank"
                   rel="noreferrer"
                 >
                   Vimeo
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -65,17 +65,11 @@ export default function Connect() {
             >
               Send
             </button>
-
-            <p className="text-xs text-white/45">
-              (Wire this to a backend later — Formspree, Resend, or a Next.js
-              route.)
-            </p>
           </form>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6 text-xs text-white/45 flex items-center justify-between">
+        <div className="mt-10 border-t border-white/10 pt-6 text-sm text-white/45 flex items-center justify-between">
           <span>© {new Date().getFullYear()} Nik Karpov</span>
-          <span className="tracking-[0.25em]">B/W MINIMAL</span>
         </div>
       </div>
     </section>

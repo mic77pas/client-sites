@@ -7,8 +7,8 @@ export default function Intro() {
       id="top"
       className="
         relative flex min-h-[100svh] flex-col items-center
-        justify-start md:justify-center
-        px-6 sm:pt-28 md:pt-0
+        justify-center md:justify-center
+        px-6
       "
     >
       <div className="w-full max-w-5xl text-center text-shadow-[0_6px_2px_rgba(0,0,0,1)]">

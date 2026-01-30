@@ -106,7 +106,6 @@ export default function Gallery() {
       <div className="flex items-end justify-between gap-6">
         <div>
           <h2 className="font-montserrat text-3xl tracking-tight">Work</h2>
-          <p className="mt-2 text-white/70">A selection of recent projects.</p>
         </div>
         <div className="hidden sm:block text-xs tracking-[0.25em] text-white/50">
           PHOTO • VIDEO
