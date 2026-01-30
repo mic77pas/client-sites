@@ -29,16 +29,14 @@ export default function RootLayout({
         <Header />
         <main className="relative max-w-7xl w-full p-4">
           {/* Background image */}
-          <div className="fixed inset-0 -z-10">
-            <div className="h-full w-full md:h-full">
-              <Image
-                src="/studio.webp"
-                alt="studio"
-                fill
-                priority
-                className="object-contain md:object-cover opacity-10"
-              />
-            </div>
+          <div className="fixed inset-0 -z-10 hidden md:block">
+            <Image
+              src="/studio.webp"
+              alt="studio"
+              fill
+              priority
+              className="object-cover object-center opacity-10"
+            />
           </div>
 
           {children}
