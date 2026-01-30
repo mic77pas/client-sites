@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import Header from "../_components/Header";
 import "./globals.css";
 import Image from "next/image";
+import MobileNav from "@/_components/MobileNav";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -40,6 +41,7 @@ export default function RootLayout({
 
           {children}
         </main>
+        <MobileNav />
       </body>
     </html>
   );
