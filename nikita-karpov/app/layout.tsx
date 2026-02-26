@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import Header from "../_components/Header";
 import "./globals.css";
 import Image from "next/image";
+import Footer from "../_components/Footer";
 import MobileNav from "@/_components/MobileNav";
 
 const montserrat = Montserrat({
@@ -26,8 +27,8 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} flex flex-col min-h-screen items-center antialiased`}
       >
-        <Header />
-        <main className="relative max-w-7xl w-full p-4">
+        {/* <Header /> */}
+        <main className="relative w-full">
           {/* Background image */}
           <div className="fixed inset-0 -z-10 hidden md:block">
             <Image
@@ -41,6 +42,7 @@ export default function RootLayout({
 
           {children}
         </main>
+        <Footer />
         <MobileNav />
       </body>
     </html>
