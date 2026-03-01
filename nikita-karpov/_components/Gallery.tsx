@@ -102,7 +102,7 @@ function MediaCard({ item }: { item: MediaItem }) {
 
 export default function Gallery() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pb-20">
+    <>
       <div className="flex items-end justify-between gap-6">
         <div>
           <h2 className="font-montserrat text-3xl tracking-tight">Work</h2>
@@ -119,6 +119,6 @@ export default function Gallery() {
           </div>
         ))}
       </div>
-    </section>
+    </>
   );
 }

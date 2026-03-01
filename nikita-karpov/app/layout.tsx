@@ -5,6 +5,8 @@ import "./globals.css";
 import Image from "next/image";
 import Footer from "../_components/Footer";
 import MobileNav from "@/_components/MobileNav";
+import SmoothScroll from "@/_components/SmoothScroll";
+import PageLoader from "@/_components/Loader";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,6 +31,7 @@ export default function RootLayout({
       >
         {/* <Header /> */}
         <main className="relative w-full">
+          <PageLoader />
           {/* Background image */}
           <div className="fixed inset-0 -z-10 hidden md:block">
             <Image
@@ -39,7 +42,7 @@ export default function RootLayout({
               className="object-cover object-center opacity-10"
             />
           </div>
-
+          <SmoothScroll />
           {children}
         </main>
         <Footer />

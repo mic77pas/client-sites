@@ -4,16 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import scrollToId from "./scrollToId";
 
-function scrollToId(id: string) {
-  const el = document.getElementById(id);
-  el?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-  // remove hash (keeps you at the same scroll position)
-  history.replaceState(null, "", window.location.pathname);
-}
-
-export default function Intro() {
+export default function Intro({
+  containerClassName = "mx-auto w-full max-w-6xl px-6",
+}: {
+  containerClassName?: string;
+}) {
   const ref = useRef<HTMLElement | null>(null);
   const STOP = 0.35;
 
@@ -71,6 +68,27 @@ export default function Intro() {
     shadowAlpha,
     (a) => `0 18px 60px rgba(0,0,0,${a})`,
   );
+
+  // add near your other transforms
+  const CAMERA_START = 0.18; // when camera begins appearing
+  const CAMERA_FULL = STOP; // fully visible by STOP
+
+  const cameraOpacity = useTransform(
+    scrollYProgress,
+    [CAMERA_START, CAMERA_FULL],
+    [0, 1],
+  );
+  const screenReveal = useTransform(
+    scrollYProgress,
+    [CAMERA_START, CAMERA_FULL],
+    [0, 1],
+  );
+
+  // TWEAK THESE to match your PNG (in % of the overlay)
+  const screenTop = "41%";
+  const screenLeft = "24%";
+  const screenWidth = "52%";
+  const screenHeight = "32%";
 
   return (
     // Make this section taller than 100vh so you have room for the animation
@@ -149,7 +167,12 @@ export default function Intro() {
           </motion.div>
 
           {/* Content */}
-          <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 flex h-full flex-col items-center justify-center px-6"
+          >
             <div className="w-full max-w-5xl text-center text-shadow-[0_6px_2px_rgba(0,0,0,1)]">
               <Image
                 src="/logo.png"
@@ -164,13 +187,13 @@ export default function Intro() {
                 NIK KARPOV
               </h1>
 
-              <p className="text-[14px] text-white/75 whitespace-nowrap tracking-[0.22em] sm:tracking-[0.28em] md:tracking-[0.35em]">
+              <p className="text-[14px] text-shadow-[0_4px_2px_rgba(0,0,0,1)] text-white/75 whitespace-nowrap tracking-[0.22em] sm:tracking-[0.28em] md:tracking-[0.35em]">
                 PHOTOGRAPHY • VIDEOGRAPHY • EDITING
               </p>
             </div>
 
             {/* Bottom buttons inside card */}
-            <div className="absolute bottom-0 left-0 right-0 flex justify-between z-10">
+            <div className="absolute bottom-0 left-0 right-0 hidden md:flex justify-between z-10">
               {/* <button
                 onClick={() => scrollToId("work")}
                 className="btn border-t border-r border-white rounded-tr-4xl whitespace-nowrap cursor-pointer"
@@ -206,7 +229,7 @@ export default function Intro() {
                   onClick={() => scrollToId("work")}
                   className="relative z-10 btn rounded-tr-4xl border-t border-r border-white whitespace-nowrap cursor-pointer"
                 >
-                  View Portfolio
+                  My Portfolio
                 </button>
               </div>
               <div className="relative inline-block group">
@@ -242,7 +265,7 @@ export default function Intro() {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

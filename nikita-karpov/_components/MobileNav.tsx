@@ -3,17 +3,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { User, Video, Mail } from "lucide-react";
+import scrollToId from "./scrollToId";
 
 type Item = {
-  href: string;
+  id: string;
   label: string;
   Icon: React.ComponentType<{ size?: number; className?: string }>;
 };
 
 const items: Item[] = [
-  { href: "#about", label: "About", Icon: User },
-  { href: "#work", label: "Work", Icon: Video },
-  { href: "#contact", label: "Contact", Icon: Mail },
+  { id: "about", label: "about", Icon: User },
+  { id: "work", label: "work", Icon: Video },
+  { id: "contact", label: "contact", Icon: Mail },
 ];
 
 export default function MobileNav() {
@@ -21,10 +22,10 @@ export default function MobileNav() {
     <nav className="fixed bottom-0 left-1/2 z-50 w-full -translate-x-1/2 md:hidden">
       <div className="flex items-center justify-between rounded-t-3xl border border-white/15 bg-black/40 px-2 py-2 backdrop-blur-md shadow-lg shadow-black/30">
         {/* Logo / Home */}
-        <Link
-          href="#top"
+        <button
+          onClick={() => scrollToId("top")}
           aria-label="Home"
-          className="flex h-12 w-16 items-center justify-center transition active:scale-[0.97]"
+          className="flex h-12 w-16 items-center justify-center transition active:scale-[0.97] cursor-pointer"
         >
           <Image
             src="/nick2.png"
@@ -33,18 +34,18 @@ export default function MobileNav() {
             height={36}
             className="object-contain"
           />
-        </Link>
+        </button>
 
         {/* Icons */}
-        {items.map(({ href, label, Icon }) => (
-          <Link
-            key={href}
-            href={href}
+        {items.map(({ id, label, Icon }) => (
+          <button
+            key={id}
+            onClick={() => scrollToId(id)}
             aria-label={label}
-            className="flex h-12 w-16 items-center justify-center transition active:scale-[0.97]"
+            className="flex h-12 w-16 items-center justify-center transition active:scale-[0.97] cursor-pointer"
           >
             <Icon size={22} className="text-white/80" />
-          </Link>
+          </button>
         ))}
       </div>
     </nav>
