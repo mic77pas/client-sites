@@ -41,7 +41,7 @@ export default function AboutCinematic({}: Props) {
         viewport={{ once: true, amount: 0.5 }}
         className="relative w-full overflow-hidden rounded-b-2xl border border-white"
         style={{
-          backgroundImage: `url('/toronto.jpg')`,
+          backgroundImage: `url('/torontonight.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "50% 60%",
         }}

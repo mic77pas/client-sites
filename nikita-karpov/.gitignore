@@ -10,8 +10,6 @@
 !.yarn/releases
 !.yarn/versions
 
-# keep local-only videos
-public/videos/
 
 # testing
 /coverage
