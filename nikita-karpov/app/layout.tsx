@@ -39,7 +39,7 @@ export default function RootLayout({
               alt="studio"
               fill
               priority
-              className="object-cover object-center opacity-10"
+              className="object-cover object-center opacity-15"
             />
           </div>
           <SmoothScroll />

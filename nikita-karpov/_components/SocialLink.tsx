@@ -48,7 +48,7 @@ export default function SocialLinkCard({
       rel={rel}
       className={[
         "group justify-between relative flex w-full items-center gap-4 overflow-hidden rounded-2xl",
-        "border border-white/10 bg-white/5 px-5 py-3 transition hover:bg-white/10",
+        "border border-white/30 bg-linear-to-b from-black to-transparent px-5 py-3 transition hover:from-black/80",
         className,
       ].join(" ")}
     >
@@ -59,10 +59,10 @@ export default function SocialLinkCard({
             src={backgroundSrc}
             alt=""
             fill
-            className="object-cover scale-110 blur-md opacity-80 transition duration-500 group-hover:scale-125 group-hover:opacity-75"
+            className="object-cover scale-110 blur-sm opacity-80 transition duration-500 group-hover:scale-125 group-hover:opacity-75"
             sizes={bgSizes}
           />
-          <div className="absolute inset-0 bg-black/85" />
+          <div className="absolute inset-0 " />
         </div>
 
         {/* Avatar */}

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import scrollToId from "./scrollToId";
+import { IoBriefcase } from "react-icons/io5";
+import { LuSend } from "react-icons/lu";
 
 export default function Intro({
   containerClassName = "mx-auto w-full max-w-6xl px-6",
@@ -227,8 +229,9 @@ export default function Intro({
                 {/* Button (ABOVE camera) */}
                 <button
                   onClick={() => scrollToId("work")}
-                  className="relative z-10 btn rounded-tr-4xl border-t border-r border-white whitespace-nowrap cursor-pointer"
+                  className="relative z-10 btn rounded-tr-4xl border-t border-r border-white whitespace-nowrap cursor-pointer flex flex-row items-center gap-2"
                 >
+                  <IoBriefcase size={24} />
                   My Portfolio
                 </button>
               </div>
@@ -259,9 +262,10 @@ export default function Intro({
                 {/* Button (ABOVE item) */}
                 <button
                   onClick={() => scrollToId("contact")}
-                  className="relative z-10 btn border-t border-l border-white rounded-tl-4xl btn-outline whitespace-nowrap cursor-pointer"
+                  className="relative z-10 btn border-t border-l border-white rounded-tl-4xl whitespace-nowrap cursor-pointer flex flex-row gap-2 items-center"
                 >
                   Contact Me
+                  <LuSend size={24} />
                 </button>
               </div>
             </div>

@@ -1,64 +1,112 @@
-import {
-  IoCameraOutline,
-  IoVideocamOutline,
-  IoLaptopOutline,
-} from "react-icons/io5";
-import AboutCinematic from "./AboutCinematics";
+"use client";
 
-const Pill = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
-  <div className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10 hover:text-white">
-    <span className="opacity-80 group-hover:opacity-100 transition">
-      {icon}
-    </span>
-    <span className="tracking-wide">{label}</span>
-  </div>
-);
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import FlowingMenu from "../components/FlowingMenu"; // adjust path
 
-export default function About() {
+type Props = {
+  bgSrc?: string;
+  overlayPngSrc?: string;
+};
+
+const body = `I’m Nik, a Toronto-based photographer and videographer specializing in creating clean, cinematic visuals that help brands elevate their presence and stand out with intention.
+With over five years of freelance experience, I bring expertise in both production and post-production: crafting engaging, visually compelling content that feels refined and purposeful.
+From content creation to visual strategy, I focus on delivering work that meets the highest creative standards and exceeds client expectations.`;
+
+const demoItems = [
+  {
+    link: "",
+    text: "Toronto",
+    image: "/torontob.jpg",
+  },
+  {
+    link: "",
+    text: "Aurora",
+    image: "/aurora.webp",
+  },
+  {
+    link: "",
+    text: "Newmarket",
+    image: "/newmarket.jpg",
+  },
+];
+
+export default function AboutCinematic({}: Props) {
   return (
-    <AboutCinematic
-      bgSrc="/toronto.jpg"
-      overlayPngSrc="/nickusa.png"
-      eyebrow="ABOUT"
-      title="Cinematic, minimal, story-first."
-      body="Multi-disciplinary creator focused on emotion, movement, and clean composition."
-    />
-    // <div className="grid gap-10 md:grid-cols-2 w-full">
-    //   {/* Left: title + pills */}
-    //   <div>
-    //     <h2 className="font-montserrat text-3xl tracking-tight">About</h2>
-    //     <p className="mt-3 text-white/70 leading-relaxed">
-    //       Multi-disciplinary creator focused on emotion, movement, and clean
-    //       composition.
-    //     </p>
+    <section className="w-full">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.5 }}
+        className="relative w-full overflow-hidden rounded-b-2xl border border-white"
+        style={{
+          backgroundImage: `url('/toronto.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "50% 60%",
+        }}
+      >
+        {/* overlays */}
+        <motion.div
+          variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="absolute inset-0 bg-black/40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/10" />
 
-    //     <div className="mt-6 flex flex-wrap gap-3">
-    //       <Pill icon={<IoCameraOutline size={18} />} label="Photography" />
-    //       <Pill icon={<IoVideocamOutline size={18} />} label="Videography" />
-    //       <Pill icon={<IoLaptopOutline size={18} />} label="Editing" />
-    //     </div>
+        {/* content */}
+        <div className="relative mx-auto w-full px-6 py-10 md:py-0 md:min-h-[460px] flex items-end ">
+          <div className="grid w-full items-center md:grid-cols-[0.8fr_1.2fr]">
+            {/* LEFT: PNG */}
+            <motion.div
+              variants={{
+                hidden: { x: 130, opacity: 0 },
+                show: { x: 0, opacity: 1 },
+              }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="relative"
+            >
+              <Image
+                src={"/nickusa.png"}
+                alt=""
+                width={400}
+                height={400}
+                className="pointer-events-none w-full max-w-[360px] select-none drop-shadow-[0_30px_60px_rgba(0,0,0,0.55)] translate-x-15 md:translate-x-0"
+              />
+            </motion.div>
 
-    //     <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 p-5">
-    //       <div className="text-xs tracking-[0.3em] text-white/60">BASED</div>
-    //       <div className="mt-2 text-white/90">Aurora • Toronto / GTA</div>
-    //       <div className="mt-1 text-sm text-white/60">
-    //         Available for projects + collaborations
-    //       </div>
-    //     </div>
-    //   </div>
+            {/* RIGHT: Menu on top, text below */}
+            <motion.div
+              variants={{
+                hidden: { y: 18, opacity: 0 },
+                show: { y: 0, opacity: 1 },
+              }}
+              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+              className="md:pl-6 flex flex-col gap-6 w-full"
+            >
+              {/* Menu block (shrinks on small screens) */}
+              <div className="w-full overflow-hidden rounded-xl border border-white/15 bg-white/5">
+                <div className="h-[150px] sm:h-[170px] md:h-[140px]">
+                  <FlowingMenu
+                    items={demoItems}
+                    bgColor="transparent"
+                    textColor="rgba(255, 255, 255, 1)"
+                    marqueeBgColor="rgba(255,255,255,1)"
+                    marqueeTextColor="#060010"
+                    borderColor="rgba(255,255,255,0.18)"
+                    speed={10}
+                  />
+                </div>
+              </div>
 
-    //   {/* Right: image block */}
-    //   <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[url('/toronto.jpg')] bg-cover bg-[position:50%_60%]">
-    //     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
-    //     <div className="relative p-6 flex h-[320px] items-end">
-    //       <div className="max-w-md">
-    //         <div className="text-xs tracking-[0.3em] text-white/60">STYLE</div>
-    //         <div className="mt-2 text-lg text-white/90">
-    //           Cinematic, minimal, story-first.
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
+              {/* About text */}
+              <p className="w-full text-white/90 leading-relaxed [text-shadow:0_2px_4px_rgba(0,0,0,1)]">
+                {body}
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </section>
   );
 }
