@@ -11,7 +11,7 @@
 !.yarn/versions
 
 # keep local-only videos
-/public/videos/
+public/videos/
 
 # testing
 /coverage
