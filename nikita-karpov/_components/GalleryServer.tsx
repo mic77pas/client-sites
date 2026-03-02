@@ -54,52 +54,53 @@ export default function GalleryServer() {
     }));
   });
 
-  // ===== Videos =====
-  // Put videos here: /public/videos/*.mp4
-  const videosDir = path.join(process.cwd(), "public", "videos");
+  //   // ===== Videos =====
+  //   // Put videos here: /public/videos/*.mp4
+  //   const videosDir = path.join(process.cwd(), "public", "videos");
 
-  // ✅ Your thumbs are here: /public/thumbs/<same-name>.jpg
-  const videoThumbsDir = path.join(process.cwd(), "public", "thumbs");
+  //   // ✅ Your thumbs are here: /public/thumbs/<same-name>.jpg
+  //   const videoThumbsDir = path.join(process.cwd(), "public", "thumbs");
 
-  const videoFiles = safeReadDir(videosDir)
-    .filter(isVideo)
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  //   const videoFiles = safeReadDir(videosDir)
+  //     .filter(isVideo)
+  //     .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
-  const videoItems: MediaItem[] = videoFiles.map((file) => {
-    const stem = fileStem(file);
+  //   const videoItems: MediaItem[] = videoFiles.map((file) => {
+  //     const stem = fileStem(file);
 
-    // find a matching thumbnail: stem.(jpg/png/webp/...)
-    const possibleThumbs = ["jpg", "jpeg", "png", "webp", "avif"].map(
-      (ext) => `${stem}.${ext}`,
-    );
+  //     // find a matching thumbnail: stem.(jpg/png/webp/...)
+  //     const possibleThumbs = ["jpg", "jpeg", "png", "webp", "avif"].map(
+  //       (ext) => `${stem}.${ext}`,
+  //     );
 
-    const foundThumb = possibleThumbs.find((thumb) =>
-      fs.existsSync(path.join(videoThumbsDir, thumb)),
-    );
+  //     const foundThumb = possibleThumbs.find((thumb) =>
+  //       fs.existsSync(path.join(videoThumbsDir, thumb)),
+  //     );
 
-    // ✅ URL path for the browser
-    const thumbSrc = foundThumb
-      ? `/thumbs/${foundThumb}`
-      : `/thumbs/video-placeholder.jpg`;
+  //     // ✅ URL path for the browser
+  //     const thumbSrc = foundThumb
+  //       ? `/thumbs/${foundThumb}`
+  //       : `/thumbs/video-placeholder.jpg`;
 
-    return {
-      kind: "video",
-      category: "Videos",
-      tag: "Videos",
-      alt: stem,
-      src: thumbSrc, // what the grid displays
-      thumbnailSrc: thumbSrc,
-      videoUrl: `/videos/${file}`, // what the lightbox plays
-    };
-  });
+  //     return {
+  //       kind: "video",
+  //       category: "Videos",
+  //       tag: "Videos",
+  //       alt: stem,
+  //       src: thumbSrc, // what the grid displays
+  //       thumbnailSrc: thumbSrc,
+  //       videoUrl: `/videos/${file}`, // what the lightbox plays
+  //     };
+  //   });
 
   // ===== Merge =====
-  const items: MediaItem[] = [...photoItems, ...videoItems];
+  //   const items: MediaItem[] = [...photoItems, ...videoItems];
+  const items: MediaItem[] = [...photoItems];
 
   // categories: photo categories + Videos (only if videos exist)
   const categories = [
     ...photoFolders.map(titleCaseFromFolder).sort((a, b) => a.localeCompare(b)),
-    ...(videoItems.length ? ["Videos"] : []),
+    // ...(videoItems.length ? ["Videos"] : []),
   ];
 
   return <GalleryClient items={items} categories={categories} />;
