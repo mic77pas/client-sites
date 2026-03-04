@@ -55,36 +55,46 @@ export default function Header() {
         ].join(" ")}
       >
         <div className="flex flex-row items-center justify-between w-full px-12">
-          <Link href="/">
+          <Link
+            href="/"
+            className="relative block w-[60px] h-[60px] mr-8 group hover:scale-105 duration-300"
+          >
             <Image
-              src="/K&F.png"
+              src="/kf.png"
               alt="Logo"
-              width={60}
-              height={60}
-              className="transition-transform duration-300 hover:scale-105 hover:brightness-120 mr-8"
+              fill
+              unoptimized
+              className="object-contain transition-opacity duration-300 group-hover:opacity-0"
+            />
+            <Image
+              src="/kfswitch.png"
+              alt="Logo hover"
+              fill
+              unoptimized
+              className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             />
           </Link>
 
           <nav>
-            <ul className="text-white flex gap-8 font-bold">
+            <ul className="text-white flex gap-8 font-bold font-sans">
               <li>
                 <Link href="/about" className="nav-link">
-                  about
+                  About
                 </Link>
               </li>
               <li>
                 <Link href="/portfolio" className="nav-link">
-                  portfolio
+                  Portfolio
                 </Link>
               </li>
               <li>
-                <Link
-                  href="https://drive.google.com/file/d/1K3GYf2A8-K891H3_0iJ5PybGPYWcMBg7/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="nav-link"
-                >
-                  resume
+                <Link href="/portfolio" className="nav-link">
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/portfolio" className="nav-link">
+                  Blog
                 </Link>
               </li>
             </ul>

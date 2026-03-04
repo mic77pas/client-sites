@@ -6,7 +6,10 @@ export default function Home() {
       <section>
         <Intro />
       </section>
-      <section className="bg-black h-300"></section>
+      <section className="bg-black h-100"></section>
+      <section className="bg-white h-100"></section>
+      <section className="bg-orange h-100"></section>
+      <section className="bg-black h-100"></section>
     </main>
   );
 }
