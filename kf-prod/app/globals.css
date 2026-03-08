@@ -51,7 +51,15 @@
 
 @layer components {
   .btn-primary {
-    @apply flex items-center justify-center text-lg w-fit rounded-full px-8 py-2 text-white bg-orange border-3 border-white transition duration-200 hover:border-light-orange hover:bg-light-orange hover:-translate-y-1 hover:shadow-[0_4px_0px_rgba(0,0,0,0.8)];
+    @apply flex items-center justify-center text-lg w-fit rounded-full px-8 py-2 text-white bg-orange border-2 border-white transition duration-200  hover:bg-white hover:text-black hover:-translate-y-1 hover:shadow-[0_4px_0px_rgba(0,0,0,0.8)];
+  }
+
+  .nav-link {
+    @apply transition-colors duration-200 hover:text-orange cursor-pointer;
+  }
+
+  .nav-link.active {
+    @apply text-orange;
   }
 }
 
@@ -131,4 +139,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }

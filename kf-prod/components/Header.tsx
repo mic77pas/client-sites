@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
+import scrollToId from "./idScroll";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -76,26 +77,46 @@ export default function Header() {
           </Link>
 
           <nav>
-            <ul className="text-white flex gap-8 font-bold font-sans">
+            <ul className="text-white flex gap-8 font-bold font-sans ">
               <li>
-                <Link href="/about" className="nav-link">
+                <button
+                  onClick={() => scrollToId("about")}
+                  className="nav-link"
+                >
                   About
-                </Link>
+                </button>
               </li>
               <li>
-                <Link href="/portfolio" className="nav-link">
+                <button
+                  onClick={() => scrollToId("services")}
+                  className="nav-link"
+                >
+                  Services
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => scrollToId("portfolio")}
+                  className="nav-link"
+                >
                   Portfolio
-                </Link>
+                </button>
               </li>
               <li>
-                <Link href="/portfolio" className="nav-link">
+                <button
+                  onClick={() => scrollToId("about")}
+                  className="nav-link"
+                >
                   Contact
-                </Link>
+                </button>
               </li>
               <li>
-                <Link href="/portfolio" className="nav-link">
+                <button
+                  onClick={() => scrollToId("about")}
+                  className="nav-link"
+                >
                   Blog
-                </Link>
+                </button>
               </li>
             </ul>
           </nav>

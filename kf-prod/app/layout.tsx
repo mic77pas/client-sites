@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 import Header from "@/components/Header";
 import PageLoader from "@/components/Loader";
+import Socials from "@/components/Socials";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({
         className={`${sans.variable} ${montserrat.variable} antialiased justify-center items-center`}
       >
         <PageLoader />
+        <Socials />
         <Header />
         {children}
       </body>
