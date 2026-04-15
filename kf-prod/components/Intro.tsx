@@ -43,16 +43,24 @@ export default function Intro() {
         />
       </div>
 
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+      {/* Dark Overlay
+      <div className="absolute inset-0 bg-black/60" /> */}
+
+      <div className="flex flex-row gap-8 z-40 pb-12">
+        <Link href="/" className="btn-primary px-12 gap-3">
+          <BsCameraVideo size={22} />
+          Reel
+        </Link>
+        <Link href="/" className="btn-primary gap-3">
+          <LuClapperboard size={20} />
+          Projects
+        </Link>
+      </div>
 
       {/* Bottom fade */}
       <div className="pointer-events-none absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-black" />
 
-      <div className="items-start z-40 h-fit w-full flex flex-col gap-4 p-12">
-        {/* <h1 className="text-white font-montserrat text-6xl text-shadow-[0_2px_3px_rgba(0,0,0,0.5)]">
-          K&F Video Production
-        </h1> */}
+      {/* <div className="items-start z-40 h-fit w-full flex flex-col gap-4 p-12">
         <div className="flex flex-row gap-4">
           <Image
             src="/kf.png"
@@ -70,14 +78,9 @@ export default function Intro() {
         <p className="font-montserrat text-[18px] text-[#dddddd] font-bold text-center text-shadow-[0_2px_3px_rgba(0,0,0,0.5)] tracking-normal">
           Cinematic Video Production for Brands & Creators
         </p>
-        {/* <p className="font-sans text-[18px] text-white text-center text-shadow-[0_2px_3px_rgba(0,0,0,0.5)] tracking-normal">
-          A Toronto-based studio crafting cinematic stories that help brands
-          showcase their strengths, connect with audiences, and stand out
-          through powerful visual storytelling
-        </p> */}
+
         <div className="flex flex-row gap-4">
           <Link href="/" className="btn-primary px-12 gap-3">
-            {/* <BsCameraReels size={18} /> */}
             <BsCameraVideo size={22} />
             Reel
           </Link>
@@ -86,32 +89,7 @@ export default function Intro() {
             Projects
           </Link>
         </div>
-
-        {/* <CurvedLoop
-          marqueeText="Be ✦ Creative ✦ With ✦ React ✦ Bits ✦"
-          speed={2}
-          curveAmount={70}
-          direction="right"
-          className="custom-text-style text-6xl w-full"
-        /> */}
-
-        {/* <LogoLoop
-          logos={imageLogos}
-          speed={100}
-          direction="left"
-          logoHeight={60}
-          gap={60}
-          hoverSpeed={0}
-          scaleOnHover
-          fadeOut
-          fadeOutColor="transparent"
-          ariaLabel="Technology partners"
-        /> */}
-        {/* <BsChevronDoubleDown
-          className="text-white animate-bounce scale-x-220"
-          size={30}
-        /> */}
-      </div>
+      </div> */}
     </div>
   );
 }

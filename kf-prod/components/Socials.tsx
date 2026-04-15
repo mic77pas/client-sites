@@ -69,7 +69,7 @@ export default function SocialDrawer() {
             open ? "Close social links panel" : "Open social links panel"
           }
           onClick={() => setOpen((prev) => !prev)}
-          className="absolute cursor-pointer left-0 top-1/2 z-10 flex h-28 w-8 -translate-x-full -translate-y-1/2 items-center justify-center rounded-l-3xl rounded-r-none bg-orange/50 transition hover:brightness-110 pointer-cursor"
+          className="absolute cursor-pointer left-0 top-1/2 z-10 flex h-28 w-8 -translate-x-full -translate-y-1/2 items-center justify-center rounded-l-3xl rounded-r-none bg-orange/60 transition hover:brightness-110 pointer-cursor"
         >
           <div className="flex items-center gap-1 ml-1 ">
             <span className="h-12 w-1 rounded-full bg-[#dd8a4d]" />
@@ -77,7 +77,7 @@ export default function SocialDrawer() {
           </div>
         </div>
 
-        <aside className="mr-3 rounded-l-[2rem] bg-orange/50 px-3 py-4 ">
+        <aside className="mr-3 rounded-l-[2rem] bg-orange/60 px-3 py-4 ">
           <div className="flex flex-col gap-3">
             {links.map(({ name, href, icon: Icon }) => (
               <a

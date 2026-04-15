@@ -1,15 +1,8 @@
 "use client";
-import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import scrollToId from "./idScroll";
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  display: "swap",
-});
 
 export default function Header() {
   const [hidden, setHidden] = useState(false);
@@ -56,9 +49,9 @@ export default function Header() {
         ].join(" ")}
       >
         <div className="flex flex-row items-center justify-between w-full px-12">
-          <Link
-            href="/"
-            className="relative block w-[60px] h-[60px] mr-8 group hover:scale-105 duration-300"
+          <button
+            onClick={() => scrollToId("intro")}
+            className="relative block w-[60px] h-[60px] mr-8 group hover:scale-105 duration-300 cursor-pointer"
           >
             <Image
               src="/kf.png"
@@ -74,10 +67,10 @@ export default function Header() {
               unoptimized
               className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             />
-          </Link>
+          </button>
 
           <nav>
-            <ul className="text-white flex gap-8 font-bold font-sans ">
+            <ul className="text-white flex gap-8 font-bold font-geog">
               <li>
                 <button
                   onClick={() => scrollToId("about")}
