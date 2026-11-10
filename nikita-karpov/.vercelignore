@@ -1,0 +1,3 @@
+# Full-resolution originals are inputs to `npm run media`, never served.
+media/
+scripts/

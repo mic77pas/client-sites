@@ -1,0 +1,406 @@
+{
+  "widths": [
+    480,
+    960,
+    1440,
+    2048
+  ],
+  "photos": [
+    {
+      "id": "cat-in-nyc",
+      "category": "animals",
+      "source": "media/photos/animals/Cat in NYC.jpg",
+      "sig": "298c8153592a",
+      "src": "/media/photos/animals/cat-in-nyc",
+      "width": 3456,
+      "height": 5184,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAQAgCdASoLABAAA4BaJaACdAYxFj6NasoAAP713LMCcxPHdwXqRrIlV+f/CfIOkpvAj7BH9dsbl+g+gnLLn3T44NjvhxqlWy3SCzlfVvjAOU9UTOjMQsZUedETRVkfUAWlRCxKIbMsLG2ywAA=",
+      "color": "#080808",
+      "exif": {
+        "camera": "Canon EOS 7D",
+        "lens": "EF50mm f/1.8 II",
+        "focal": "50mm",
+        "aperture": "ƒ/5.6",
+        "shutter": "1/60s",
+        "iso": "ISO 100",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc00075-enhanced-nr",
+      "category": "animals",
+      "source": "media/photos/animals/DSC00075-Enhanced-NR.jpg",
+      "sig": "b0cf442afe6a",
+      "src": "/media/photos/animals/dsc00075-enhanced-nr",
+      "width": 4128,
+      "height": 6192,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAABQAQCdASoLABAAA4BaJQBYdi6gAP7zrpriJiXqtG/p3W+uRAHar6MYYNbDAAAA",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "E PZ 16-50mm F3.5-5.6 OSS",
+        "focal": "50mm",
+        "aperture": "ƒ/5.6",
+        "shutter": "1/125s",
+        "iso": "ISO 6400",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc05339-2",
+      "category": "animals",
+      "source": "media/photos/animals/DSC05339-2.jpg",
+      "sig": "27fbd6dab709",
+      "src": "/media/photos/animals/dsc05339-2",
+      "width": 3646,
+      "height": 5276,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAACQAQCdASoLABAAA4BaJaQAAlExhAAA/kCjdk+rMyTlIFoPThxz0zVgKX063IcHSJaa7+BXhKtZSAPWn+SK1CIu7IAAAA==",
+      "color": "#686868",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 50mm F1.8 SAM",
+        "focal": "50mm",
+        "aperture": "ƒ/2.8",
+        "shutter": "1/1000s",
+        "iso": "ISO 100",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc00910",
+      "category": "events",
+      "source": "media/photos/events/DSC00910.jpg",
+      "sig": "e3aba66e1ca6",
+      "src": "/media/photos/events/dsc00910",
+      "width": 4128,
+      "height": 6192,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAABwAgCdASoLABAAA4BaJbACdH8Agsyc2kryfhoAAP7wcmEXSZJ1OiM6MdzE/3qcitHNj7hD2o/Nqu6Zv/fNEIDmkHyP6oeAyUzk/cmN13ETeJm6mcrtzHIQrTAhL2i4CYfV4q7GXi8ml2Krvy2KbsSZJzIAAA==",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "18-50mm F2.8 DC DN | Contemporary 021",
+        "focal": "50mm",
+        "aperture": "ƒ/2.8",
+        "shutter": "1/100s",
+        "iso": "ISO 500",
+        "year": 2025
+      }
+    },
+    {
+      "id": "dsc06741",
+      "category": "events",
+      "source": "media/photos/events/DSC06741.jpg",
+      "sig": "f44f3f50bbe2",
+      "src": "/media/photos/events/dsc06741",
+      "width": 4128,
+      "height": 6192,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoLABAAA4BaJaAAAv269/NtdybgAP7yzy9rv/B/X3frEGP8c4TGU3homKZPF911aTmPcctuhg2szNyN+yD/Kp6eJ4RtdW0jSesMXzAU1ZSsI/R6B/6jFQAA",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 70-200mm F4 SAM",
+        "focal": "200mm",
+        "aperture": "ƒ/4",
+        "shutter": "1/500s",
+        "iso": "ISO 5000",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc07323",
+      "category": "events",
+      "source": "media/photos/events/DSC07323.jpg",
+      "sig": "0f301f36a53f",
+      "src": "/media/photos/events/dsc07323",
+      "width": 6192,
+      "height": 4128,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAQAgCdASoQAAsAA4BaJYwCdADdRGS4jgAAAP7AdJJXrJP+jNaX7Vp8IRxivDi73pzcsOOVlzvIva7sQ2X2WBS8SaBhY722uCrDZWoZDBtT+LW2Vmco+IKzJcAAAA==",
+      "color": "#383838",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 50mm F1.8 SAM",
+        "focal": "50mm",
+        "aperture": "ƒ/2.8",
+        "shutter": "1/100s",
+        "iso": "ISO 400",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc04277",
+      "category": "people",
+      "source": "media/photos/people/DSC04277.jpg",
+      "sig": "1657cac9341f",
+      "src": "/media/photos/people/dsc04277",
+      "width": 4128,
+      "height": 6192,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAwAgCdASoLABAAA4BaJQBOkCYjA0uxpeieAAD+80nZFhI6rynyCBOIxVeaEPYgt9A1PX5HEXL4uuNVXd6irlYkP52+Zix2Wmo1H3uFYmBV84BUf1EAAA==",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 50mm F1.8 SAM",
+        "focal": "50mm",
+        "aperture": "ƒ/2.8",
+        "shutter": "1/100s",
+        "iso": "ISO 640",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc06148",
+      "category": "people",
+      "source": "media/photos/people/DSC06148.jpg",
+      "sig": "dd59c399bde9",
+      "src": "/media/photos/people/dsc06148",
+      "width": 6192,
+      "height": 4128,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAQCdASoQAAsAA4BaJQAB8k4Fp5VpMwAA/veyOdvlupPPteHlcFKJ1tnDerjnW9yidmxqXT3CVviOk9cmmrj8VJf+N+PmbzW93czOLZ/o967LF7mpZKZbY09795I9pgPsPU/EwgAAAA==",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "E PZ 16-50mm F3.5-5.6 OSS",
+        "focal": "36mm",
+        "aperture": "ƒ/5.6",
+        "shutter": "1/200s",
+        "iso": "ISO 2000",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc08483-enhanced-nr",
+      "category": "people",
+      "source": "media/photos/people/DSC08483-Enhanced-NR.jpg",
+      "sig": "4468ec794bae",
+      "src": "/media/photos/people/dsc08483-enhanced-nr",
+      "width": 4128,
+      "height": 6192,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAACQAQCdASoLABAAA4BaJaQAAevjvQAA/s3lzMuivSs6h1RhclmncoYOhuzjbj/5egvjbCdUeO81n951EGhmpw9BkfqLU5kglxf8cD1Gmyiv+jAA",
+      "color": "#484848",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "18-50mm F2.8 DC DN | Contemporary 021",
+        "focal": "50mm",
+        "aperture": "ƒ/2.8",
+        "shutter": "1/60s",
+        "iso": "ISO 3200",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc05818",
+      "category": "promo",
+      "source": "media/photos/promo/DSC05818.jpg",
+      "sig": "d9ac7dd4b1b0",
+      "src": "/media/photos/promo/dsc05818",
+      "width": 4128,
+      "height": 6007,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoLABAAA4BaJZwAAudaVN4wAAD++bzzBkRp2HWzbseCqty8/CtaZSZ0NQC01euAAAA=",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 70-200mm F4 SAM",
+        "focal": "168mm",
+        "aperture": "ƒ/5",
+        "shutter": "1/160s",
+        "iso": "ISO 320",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc06026",
+      "category": "promo",
+      "source": "media/photos/promo/DSC06026.jpg",
+      "sig": "ea5e220638e6",
+      "src": "/media/photos/promo/dsc06026",
+      "width": 4128,
+      "height": 6192,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADwAQCdASoLABAAA4BaJQBOgB6PcbpGpCAA/rgnTZfxU5TWEozc1pCNYkJA8xfrsl2g8eEtjf2wD9cjI1YGkCOsdVDgV+D45xTZjEttVh9HNaVE7IauUSj3g9Ml03OyTG4+gAAA",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 70-200mm F4 SAM",
+        "focal": "200mm",
+        "aperture": "ƒ/5.6",
+        "shutter": "1/320s",
+        "iso": "ISO 100",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc06077",
+      "category": "promo",
+      "source": "media/photos/promo/DSC06077.jpg",
+      "sig": "818724855f8a",
+      "src": "/media/photos/promo/dsc06077",
+      "width": 4128,
+      "height": 6192,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAQCdASoLABAAA4BaJZgAAucNG4T0AAD+5GA3jV6ZZsgu9CYzPq4NVT+J5YyHrIqr4F82lbL9TGAP/BHKHCOA0yC2SxlOCbHmcZ9pN4CZ4nZYGDrRNK/xCxkGUnomy+UQAA==",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 70-200mm F4 SAM",
+        "focal": "70mm",
+        "aperture": "ƒ/11",
+        "shutter": "1/800s",
+        "iso": "ISO 800",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc01180",
+      "category": "sports",
+      "source": "media/photos/sports/DSC01180.jpg",
+      "sig": "b784cd23be9e",
+      "src": "/media/photos/sports/dsc01180",
+      "width": 3431,
+      "height": 3395,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADwAQCdASoQABAAA4BaJYgAAp3XwssK/OgA/uu5JFc5MqUrccnYTdFqx5k2I0ui4jZxMSV/zb29hnzN8W2ayvTTAKOJjFZ1anxJ12VKAoXqy2k1EJ3wRkAAAAA=",
+      "color": "#f8f8f8",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 50mm F1.8 SAM",
+        "focal": "50mm",
+        "aperture": "ƒ/1.8",
+        "shutter": "1/2000s",
+        "iso": "ISO 4000",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc01323",
+      "category": "sports",
+      "source": "media/photos/sports/DSC01323.jpg",
+      "sig": "ef34554ea7f2",
+      "src": "/media/photos/sports/dsc01323",
+      "width": 5497,
+      "height": 2466,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAcAA4BaJbAC7ADwSLhOIAD+0SlW9Sw68wKbbiQyx8lnZiVE41tWUAqrrfEZrMwTxfPOyntAAA==",
+      "color": "#486808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "DT 50mm F1.8 SAM",
+        "focal": "50mm",
+        "aperture": "ƒ/1.8",
+        "shutter": "1/2000s",
+        "iso": "ISO 6400",
+        "year": 2024
+      }
+    },
+    {
+      "id": "imgl0009",
+      "category": "sports",
+      "source": "media/photos/sports/IMGL0009.jpg",
+      "sig": "463013d707af",
+      "src": "/media/photos/sports/imgl0009",
+      "width": 1360,
+      "height": 1769,
+      "maxWidth": 1360,
+      "blurDataURL": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoMABAAA4BaJbACw7EJcc2bJIAA/mRH/8kRgAPx6jsB9oA00BkfVyuO/por5+eNOGh0QZTJDBhbhw/lzDoXPHTManWl8zFQOhkOU4BHl+2AF0AA",
+      "color": "#b8b8b8",
+      "exif": {
+        "camera": "Canon EOS 7D",
+        "lens": "EF50mm f/1.8 II",
+        "focal": "50mm",
+        "aperture": "ƒ/7.1",
+        "shutter": "1/320s",
+        "iso": "ISO 100",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc00548",
+      "category": "street",
+      "source": "media/photos/street/DSC00548.jpg",
+      "sig": "480e7b1b74a1",
+      "src": "/media/photos/street/dsc00548",
+      "width": 4128,
+      "height": 6192,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoLABAAA4BaJbACdAEO/0yiYuAA/vLXc/LBVFRykZfv/aZ1N7JJjUteIFBv4u7EA1SBeRDAWz45pr160t65g75gAAA=",
+      "color": "#084888",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "E PZ 16-50mm F3.5-5.6 OSS",
+        "focal": "50mm",
+        "aperture": "ƒ/5.6",
+        "shutter": "1/2500s",
+        "iso": "ISO 250",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc00625",
+      "category": "street",
+      "source": "media/photos/street/DSC00625.jpg",
+      "sig": "067d7ff25dd8",
+      "src": "/media/photos/street/dsc00625",
+      "width": 1879,
+      "height": 2715,
+      "maxWidth": 1879,
+      "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoLABAAA4BaJYwC7ADhQr72cAD+94Jb7wuX/caHIWo5ZiBpTep/+MNnopt8WaV+xzRJ92RXOvvGHx3VLZPGHgAA",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "E PZ 16-50mm F3.5-5.6 OSS",
+        "focal": "50mm",
+        "aperture": "ƒ/5.6",
+        "shutter": "1/125s",
+        "iso": "ISO 1000",
+        "year": 2024
+      }
+    },
+    {
+      "id": "dsc00703",
+      "category": "street",
+      "source": "media/photos/street/DSC00703.jpg",
+      "sig": "1e9736f182f4",
+      "src": "/media/photos/street/dsc00703",
+      "width": 6192,
+      "height": 4128,
+      "maxWidth": 2048,
+      "blurDataURL": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAABQAgCdASoQAAsAA4BaJQBOgMVu7bg3i7FJGUAA/vFu90ZqcRo73l5rVDFCDiypmocz5a9E9GjHMNDQdZMgLBSg6Kc1Q2noHo/Vuq+fJtGu9+91hb60KGb5KmeTjn1VxJdIAA==",
+      "color": "#080808",
+      "exif": {
+        "camera": "Sony α6700",
+        "lens": "E PZ 16-50mm F3.5-5.6 OSS",
+        "focal": "16mm",
+        "aperture": "ƒ/11",
+        "shutter": "2s",
+        "iso": "ISO 125",
+        "year": 2024
+      }
+    }
+  ],
+  "videos": [
+    {
+      "id": "showreel",
+      "source": "media/video/showreel.mp4",
+      "sig": "415478506434116a208a951a",
+      "hd": "/media/video/showreel-1080.mp4",
+      "sd": "/media/video/showreel-720.mp4",
+      "poster": "/media/video/showreel-poster.webp",
+      "posterBlur": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADQAQCdASoQAAkAA4BaJQBOgCFS5mwhYAD+93f7yRnxMckGN2KWBS3d5TC6mDPU3miY10HYagAAAA==",
+      "width": 1920,
+      "height": 1080,
+      "duration": 17,
+      "sizeKB": {
+        "hd": 7582,
+        "sd": 2206
+      }
+    }
+  ]
+}

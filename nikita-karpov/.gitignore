@@ -40,3 +40,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# media pipeline -------------------------------------------------------------
+# Full-res originals are the input to `npm run media`. Only the generated
+# derivatives (public/media, content/media.json) need to be committed.
+# Files already tracked under media/ stay tracked; new originals dropped into
+# media/photos or media/video are ignored by default to keep the repo small.
+# Remove these two lines if you'd rather version originals in Git LFS.
+/media/photos/**/*
+/media/video/*.mp4
+!/media/video/*.json

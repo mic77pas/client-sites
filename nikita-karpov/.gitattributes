@@ -1,0 +1,8 @@
+# Web derivatives produced by `npm run media` are small and deployed with the
+# site, so they live in regular git — NOT Git LFS. This keeps Vercel builds
+# working without LFS enabled (no LFS bandwidth spent per deploy).
+# Full-resolution originals under media/ stay on the repo-wide LFS rules.
+public/media/** !filter !diff !merge binary
+public/brand/** !filter !diff !merge binary
+app/*.png !filter !diff !merge binary
+app/*.jpg !filter !diff !merge binary

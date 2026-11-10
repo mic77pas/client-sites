@@ -1,51 +1,230 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+/* ------------------------------------------------------------------ tokens */
+
+@theme {
+  --color-paper: #efece6;
+  --color-paper-2: #e5e1d9;
+  --color-ink: #161513;
+  --color-ink-2: #34322e;
+  --color-mute: #625d56;
+  --color-rule: rgb(22 21 19 / 0.16);
+  /* Darkroom safelight — used sparingly: focus, active states, the REC dot. */
+  --color-safelight: #b4351e;
+  --color-night: #0e0d0c;
+  --color-night-2: #1b1a18;
+  --color-night-mute: #a29d94;
+  --color-night-rule: rgb(239 236 230 / 0.16);
+
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 :root {
-  --background: #000000;
-  --foreground: #171717;
+  --gutter: clamp(16px, 3.2vw, 48px);
+  --header-h: 64px;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* -------------------------------------------------------------------- base */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #171717;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-safelight);
+    outline-offset: 3px;
+  }
+
+  img,
+  video {
+    max-width: 100%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-montserrat);
-  scroll-behavior: smooth;
+/* -------------------------------------------------------------- utilities */
+
+@utility wrap {
+  width: 100%;
+  max-width: 1680px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
-.nav-link {
-  @apply text-white font-medium hover:text-gray-400 transition-colors;
+/* Large editorial serif. */
+@utility t-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5.6vw, 5.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.015em;
 }
 
-.btn {
-  @apply px-6 py-3 bg-white text-black text-xl font-bold hover:bg-[#000000] hover:text-white transition-colors duration-400 shadow-md shadow-black/60;
+@utility t-h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.6vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
 }
 
-.card {
-  @apply w-full justify-center items-center rounded-lg py-3 hover:scale-105 transition-transform duration-200 shadow-lg shadow-black/40;
+@utility t-h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1.1;
 }
 
-.tshadow-lg {
-  @apply text-shadow-[0_4px_2px_rgba(0,0,0,0.9)];
+/* Small mono label — captions, indices, metadata. */
+@utility t-label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.tshadow-sm {
-  @apply text-shadow-[0_1px_6px_rgba(0,0,0,0.9)];
+@utility t-lede {
+  font-size: clamp(1.0625rem, 1.25vw, 1.25rem);
+  line-height: 1.55;
+}
+
+/* Underline that grows from the left on hover. */
+@utility link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 400ms var(--ease-out-quint);
+  &:hover,
+  &:focus-visible,
+  &[aria-current="page"] {
+    background-size: 100% 1px;
+  }
+}
+
+/* Recolourable logo mark (alpha mask). */
+@utility mark {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: url("/brand/nk-mark.png") center / contain no-repeat;
+  mask: url("/brand/nk-mark.png") center / contain no-repeat;
+  aspect-ratio: 480 / 404;
+}
+
+/* ---------------------------------------------------------- components */
+
+@layer components {
+  /* Justified gallery: rows fill the width while each photo keeps its own
+     proportions. Pure CSS, so it renders correctly on the server. */
+  .justified {
+    --row: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(6px, 0.8vw, 12px);
+  }
+  .justified::after {
+    content: "";
+    flex-grow: 999999;
+  }
+  .justified > * {
+    flex-grow: calc(var(--ar) * 100);
+    flex-basis: calc(var(--ar) * var(--row));
+    position: relative;
+  }
+  @media (min-width: 640px) {
+    .justified {
+      --row: 260px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .justified {
+      --row: 340px;
+    }
+  }
+  @media (min-width: 1600px) {
+    .justified {
+      --row: 400px;
+    }
+  }
+
+  /* Image frame: shows the photo's own colour + blur, then the photo fades in. */
+  .frame {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-paper-2);
+  }
+  .frame img {
+    transition:
+      transform 900ms var(--ease-out-quint),
+      opacity 500ms ease;
+  }
+  .group:hover .frame img,
+  .group:focus-visible .frame img {
+    transform: scale(1.015);
+  }
+}
+
+/* Gentle reveal as figures enter the viewport — CSS only, progressive. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
+}
+
+/* Lightbox image swap. */
+.lb-in {
+  animation: lb-in 380ms var(--ease-out-quint) both;
+}
+@keyframes lb-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

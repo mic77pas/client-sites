@@ -1,52 +1,53 @@
-import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
-import Header from "../_components/Header";
+import type { Metadata, Viewport } from "next";
+import { Hanken_Grotesk, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { site } from "@/content/site";
 import "./globals.css";
-import Image from "next/image";
-import Footer from "../_components/Footer";
-import MobileNav from "@/_components/MobileNav";
-import SmoothScroll from "@/_components/SmoothScroll";
-import PageLoader from "@/_components/Loader";
 
-const montserrat = Montserrat({
+const serif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
 });
+const sans = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-hanken", display: "swap" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono", display: "swap" });
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  ? process.env.NEXT_PUBLIC_SITE_URL
+  : process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000";
 
 export const metadata: Metadata = {
-  title: "Nik Karpov",
-  description: "Photographer & Creator",
+  metadataBase: new URL(siteUrl),
+  title: { default: `${site.name} — ${site.role}`, template: `%s — ${site.name}` },
+  description: site.description,
+  openGraph: { type: "website", siteName: site.name, locale: "en_CA" },
+  twitter: { card: "summary_large_image" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: "#efece6",
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${montserrat.variable} flex flex-col min-h-screen items-center antialiased`}
-      >
-        {/* <Header /> */}
-        <main className="relative w-full">
-          <PageLoader />
-          {/* Background image */}
-          <div className="fixed inset-0 -z-10 hidden md:block">
-            <Image
-              src="/studio.webp"
-              alt="studio"
-              fill
-              priority
-              className="object-cover object-center opacity-15"
-            />
-          </div>
-          <SmoothScroll />
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+      <body className="flex min-h-svh flex-col">
+        <a
+          href="#main"
+          className="t-label sr-only z-[200] bg-ink px-4 py-3 text-paper focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main" className="flex-1">
           {children}
         </main>
-        <Footer />
-        <MobileNav />
+        <SiteFooter />
       </body>
     </html>
   );
