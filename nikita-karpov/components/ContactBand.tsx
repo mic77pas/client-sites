@@ -3,7 +3,7 @@ import { ArrowLink } from "./ArrowLink";
 
 export function ContactBand() {
   return (
-    <section aria-labelledby="contact-band" className="bg-night text-paper">
+    <section aria-labelledby="contact-band" className="border-t border-night-rule bg-night text-night-fg">
       <div className="wrap grid gap-10 py-20 md:grid-cols-12 md:py-28">
         <div className="md:col-span-7">
           <p className="t-label mb-5 text-night-mute">Inquiries</p>
@@ -17,7 +17,7 @@ export function ContactBand() {
           </p>
           <div className="flex flex-col gap-3 text-[17px]">
             <ArrowLink href="/contact">Start an inquiry</ArrowLink>
-            <a href={`mailto:${site.email}`} className="link-line w-fit text-night-mute hover:text-paper">
+            <a href={`mailto:${site.email}`} className="link-line w-fit text-night-mute hover:text-night-fg">
               {site.email}
             </a>
           </div>

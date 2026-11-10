@@ -2,20 +2,78 @@
 
 /* ------------------------------------------------------------------ tokens */
 
-@theme {
-  --color-paper: #efece6;
-  --color-paper-2: #e5e1d9;
-  --color-ink: #161513;
-  --color-ink-2: #34322e;
-  --color-mute: #625d56;
-  --color-rule: rgb(22 21 19 / 0.16);
-  /* Darkroom safelight — used sparingly: focus, active states, the REC dot. */
-  --color-safelight: #b4351e;
-  --color-night: #0e0d0c;
-  --color-night-2: #1b1a18;
-  --color-night-mute: #a29d94;
-  --color-night-rule: rgb(239 236 230 / 0.16);
+/*
+ * Palette. Raw values live in plain custom properties so they can flip for
+ * dark mode; Tailwind utilities (bg-paper, text-ink, …) point at them.
+ *
+ *   paper / paper-2   page + raised surfaces      ink / ink-2 / mute   text
+ *   rule              hairlines                   safelight            focus + accents
+ *   night*            always-dark bands (film, inquiries, lightbox) — same in both modes
+ *
+ * Theme resolution: data-theme="light" | "dark" on <html> (set by the toggle and
+ * an inline script in app/layout.tsx); otherwise the OS preference.
+ */
+:root {
+  --paper: #efece6;
+  --paper-2: #e5e1d9;
+  --ink: #161513;
+  --ink-2: #34322e;
+  --mute: #625d56;
+  --rule: rgb(22 21 19 / 0.16);
+  --safelight: #b4351e;
+  --night: #0e0d0c;
+  --night-fg: #efece6;
+  --night-mute: #a29d94;
+  --night-rule: rgb(239 236 230 / 0.16);
+  color-scheme: light;
 
+  --gutter: clamp(16px, 3.2vw, 48px);
+  --header-h: 64px;
+}
+
+/* Dark: warm charcoal, not pure black, so photographs keep their contrast. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  --paper: #141311;
+  --paper-2: #201e1b;
+  --ink: #ece8e1;
+  --ink-2: #cdc8bf;
+  --mute: #9c968c;
+  --rule: rgb(236 232 225 / 0.14);
+  --safelight: #e46a4c;
+  --night: #0a0908;
+  --night-rule: rgb(239 236 230 / 0.12);
+  color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141311;
+  --paper-2: #201e1b;
+  --ink: #ece8e1;
+  --ink-2: #cdc8bf;
+  --mute: #9c968c;
+  --rule: rgb(236 232 225 / 0.14);
+  --safelight: #e46a4c;
+  --night: #0a0908;
+  --night-rule: rgb(239 236 230 / 0.12);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-mute: var(--mute);
+  --color-rule: var(--rule);
+  --color-safelight: var(--safelight);
+  --color-night: var(--night);
+  --color-night-fg: var(--night-fg);
+  --color-night-mute: var(--night-mute);
+  --color-night-rule: var(--night-rule);
+}
+
+@theme {
   --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
@@ -23,10 +81,16 @@
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-:root {
-  --gutter: clamp(16px, 3.2vw, 48px);
-  --header-h: 64px;
-  color-scheme: light;
+/* `dark:` variant that follows the same resolution as the palette. */
+@custom-variant dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
 }
 
 /* -------------------------------------------------------------------- base */
@@ -38,8 +102,11 @@
   }
 
   body {
-    background: var(--color-paper);
-    color: var(--color-ink);
+    background: var(--paper);
+    color: var(--ink);
+    transition:
+      background-color 300ms ease,
+      color 300ms ease;
     font-family: var(--font-sans);
     font-size: 16px;
     line-height: 1.6;
@@ -49,12 +116,12 @@
   }
 
   ::selection {
-    background: var(--color-ink);
-    color: var(--color-paper);
+    background: var(--ink);
+    color: var(--paper);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-safelight);
+    outline: 2px solid var(--safelight);
     outline-offset: 3px;
   }
 
@@ -174,7 +241,7 @@
   .frame {
     position: relative;
     overflow: hidden;
-    background-color: var(--color-paper-2);
+    background-color: var(--paper-2);
   }
   .frame img {
     transition:

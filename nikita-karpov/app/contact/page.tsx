@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { InquiryForm } from "@/components/InquiryForm";
+import { SocialIcon } from "@/components/SocialIcon";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -23,21 +24,29 @@ export default function ContactPage() {
           <div>
             <dt className="t-label text-mute">Email</dt>
             <dd className="mt-2">
-              <a href={`mailto:${site.email}`} className="link-line font-serif text-[1.75rem] leading-tight break-all md:text-[2rem]">
-                {site.email}
+              <a href={`mailto:${site.email}`} className="group inline-flex items-center gap-3">
+                <SocialIcon name="email" className="h-6 w-6 text-mute transition-colors group-hover:text-ink" />
+                <span className="link-line break-all font-serif text-[1.75rem] leading-tight md:text-[2rem]">{site.email}</span>
               </a>
             </dd>
           </div>
           <div>
             <dt className="t-label text-mute">Elsewhere</dt>
             <dd className="mt-2">
-              <ul className="space-y-1.5 text-[17px]">
+              <ul className="mt-1 border-t border-rule text-[17px]">
                 {site.socials.map((s) => (
-                  <li key={s.label}>
-                    <a href={s.href} target="_blank" rel="noreferrer" className="link-line">
-                      {s.label}
-                    </a>{" "}
-                    <span className="text-mute">{s.handle}</span>
+                  <li key={s.label} className="border-b border-rule">
+                    <a href={s.href} target="_blank" rel="noreferrer" className="group flex items-center gap-4 py-3">
+                      <SocialIcon name={s.icon} className="h-5 w-5" />
+                      <span>{s.label}</span>
+                      <span className="text-mute">{s.handle}</span>
+                      <span
+                        aria-hidden="true"
+                        className="ml-auto text-mute transition-transform duration-500 ease-out-quint group-hover:translate-x-1 group-hover:text-ink"
+                      >
+                        ↗
+                      </span>
+                    </a>
                   </li>
                 ))}
               </ul>

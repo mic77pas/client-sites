@@ -52,7 +52,7 @@ export default function FilmPage() {
 
   return (
     <>
-      <div className="bg-night text-paper">
+      <div className="bg-night text-night-fg">
         <header className="wrap pb-12 pt-10 md:pb-16 md:pt-16">
           <p className="t-label text-night-mute">Film &amp; edit</p>
           <h1 className="t-display mt-5">Film</h1>

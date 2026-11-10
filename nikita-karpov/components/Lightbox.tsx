@@ -187,12 +187,12 @@ function Viewer({
       role="dialog"
       aria-modal="true"
       aria-label={`Photo ${index + 1} of ${n}: ${photo.title}`}
-      className="fixed inset-0 z-[100] flex flex-col bg-night text-paper"
+      className="fixed inset-0 z-[100] flex flex-col bg-night text-night-fg"
     >
       {/* top bar */}
       <div className="wrap flex h-14 shrink-0 items-center justify-between">
         <p className="t-label text-night-mute" aria-live="polite">
-          <span className="text-paper">{pad2(index + 1)}</span> / {pad2(n)}
+          <span className="text-night-fg">{pad2(index + 1)}</span> / {pad2(n)}
           <span className="ml-4 hidden sm:inline">{photo.category.title}</span>
         </p>
         <button ref={closeRef} type="button" onClick={onClose} className="t-label -mr-2 px-2 py-3 hover:text-white">
@@ -235,7 +235,7 @@ function Viewer({
           aria-label="Previous photo"
           className="group absolute inset-y-0 left-0 hidden w-1/4 cursor-w-resize items-center justify-start pl-5 md:flex"
         >
-          <span className="t-label text-night-mute transition-colors group-hover:text-paper">←</span>
+          <span className="t-label text-night-mute transition-colors group-hover:text-night-fg">←</span>
         </button>
         <button
           type="button"
@@ -243,7 +243,7 @@ function Viewer({
           aria-label="Next photo"
           className="group absolute inset-y-0 right-0 hidden w-1/4 cursor-e-resize items-center justify-end pr-5 md:flex"
         >
-          <span className="t-label text-night-mute transition-colors group-hover:text-paper">→</span>
+          <span className="t-label text-night-mute transition-colors group-hover:text-night-fg">→</span>
         </button>
       </div>
 

@@ -30,12 +30,23 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#efece6",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#efece6" },
+    { media: "(prefers-color-scheme: dark)", color: "#141311" },
+  ],
 };
+
+// Runs before first paint so a saved light/dark choice never flashes the other theme.
+// The explicit choice gets its own theme-color tag at the top of <head>; browsers use the
+// first matching tag, so it wins over the media-query ones Next renders from `viewport`.
+const themeScript = `try{var t=localStorage.getItem("nk-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var m=document.createElement("meta");m.name="theme-color";m.id="nk-theme-color";m.content=t==="dark"?"#141311":"#efece6";document.head.prepend(m)}}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="flex min-h-svh flex-col">
         <a
           href="#main"

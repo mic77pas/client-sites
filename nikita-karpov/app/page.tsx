@@ -129,7 +129,7 @@ export default function Home() {
 
       {/* ----------------------------------------------------------------- film */}
       {reel ? (
-        <section aria-labelledby="film" className="bg-night text-paper">
+        <section aria-labelledby="film" className="border-y border-night-rule bg-night text-night-fg">
           <div className="wrap grid gap-10 py-20 md:grid-cols-12 md:gap-x-(--gutter) md:py-28">
             <div className="flex flex-col justify-between gap-8 md:col-span-4">
               <div>

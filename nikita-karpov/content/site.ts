@@ -6,9 +6,9 @@ export const site = {
     "Nik Karpov is a Toronto-based photographer, videographer and editor making clean, cinematic images for people and brands.",
   email: "nikitichkarp@gmail.com",
   socials: [
-    { label: "Instagram", handle: "@nktfilms_", href: "https://www.instagram.com/nktfilms_/" },
-    { label: "LinkedIn", handle: "nik-karpov", href: "https://www.linkedin.com/in/nik-karpov-9ab58a34b/" },
-    { label: "YouTube", handle: "@nicksjuice", href: "https://www.youtube.com/@nicksjuice" },
+    { label: "Instagram", icon: "instagram", handle: "@nktfilms_", href: "https://www.instagram.com/nktfilms_/" },
+    { label: "LinkedIn", icon: "linkedin", handle: "nik-karpov", href: "https://www.linkedin.com/in/nik-karpov-9ab58a34b/" },
+    { label: "YouTube", icon: "youtube", handle: "@nicksjuice", href: "https://www.youtube.com/@nicksjuice" },
   ],
 } as const;
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { nav, site } from "@/content/site";
 import { Mark } from "./Mark";
+import { SocialIcon } from "./SocialIcon";
 
 export function SiteFooter() {
   return (
@@ -26,16 +27,19 @@ export function SiteFooter() {
         </nav>
         <div className="md:col-span-4">
           <p className="t-label mb-4 text-mute">Elsewhere</p>
-          <ul className="space-y-1.5 text-[15px]">
+          <ul className="space-y-2.5 text-[15px]">
             <li>
-              <a href={`mailto:${site.email}`} className="link-line">
-                {site.email}
+              <a href={`mailto:${site.email}`} className="group flex items-center gap-3">
+                <SocialIcon name="email" className="h-[18px] w-[18px] text-mute transition-colors group-hover:text-ink" />
+                <span className="link-line">{site.email}</span>
               </a>
             </li>
             {site.socials.map((s) => (
               <li key={s.label}>
-                <a href={s.href} target="_blank" rel="noreferrer" className="link-line">
-                  {s.label} <span className="text-mute">{s.handle}</span>
+                <a href={s.href} target="_blank" rel="noreferrer" className="group flex items-center gap-3">
+                  <SocialIcon name={s.icon} className="h-[18px] w-[18px] text-mute transition-colors group-hover:text-ink" />
+                  <span className="link-line">{s.label}</span>
+                  <span className="text-mute">{s.handle}</span>
                 </a>
               </li>
             ))}

@@ -81,6 +81,19 @@ NEXT_PUBLIC_MEDIA_BASE_URL=https://<your-bucket-domain>
 
 The loader prefixes every photo URL with it. No other code changes are needed.
 
+## Light / dark theme
+
+Colours are CSS variables in `app/globals.css` (`--paper`, `--ink`, `--mute`, …) with a
+light set on `:root` and a dark set for `prefers-color-scheme: dark` / `data-theme="dark"`.
+Tailwind classes (`bg-paper`, `text-ink`, …) point at them, so components never hard-code
+a mode. The `dark:` variant follows the same rules if a one-off override is needed.
+
+- Default: follows the visitor's OS setting.
+- The sun/moon button in the header saves an explicit choice (`localStorage["nk-theme"]`).
+  Picking the mode that matches the OS clears it again.
+- A tiny inline script in `app/layout.tsx` applies a saved choice before first paint (no flash).
+- `night-*` colours (film band, inquiries band, lightbox) stay dark in both modes.
+
 ## Environment
 
 | Variable | Purpose |

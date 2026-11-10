@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { nav, site } from "@/content/site";
 import { Mark } from "./Mark";
+import { SocialIcon } from "./SocialIcon";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -58,7 +60,7 @@ export function SiteHeader() {
           <span className="text-[15px] font-medium tracking-tight">{site.name}</span>
         </Link>
 
-        <nav aria-label="Main" className="hidden md:block">
+        <nav aria-label="Main" className="hidden md:flex md:items-center md:gap-9">
           <ul className="flex items-center gap-9 text-[15px]">
             {nav.map((item) => (
               <li key={item.href}>
@@ -72,18 +74,23 @@ export function SiteHeader() {
               </li>
             ))}
           </ul>
+          <span aria-hidden="true" className="h-4 w-px bg-rule" />
+          <ThemeToggle />
         </nav>
 
-        <button
-          ref={toggleRef}
-          type="button"
-          className="t-label -mr-2 px-2 py-3 md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((o) => !o)}
-        >
-          {open ? "Close" : "Menu"}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <ThemeToggle />
+          <button
+            ref={toggleRef}
+            type="button"
+            className="t-label -mr-2 px-2 py-3"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? "Close" : "Menu"}
+          </button>
+        </div>
       </div>
 
       <div
@@ -106,17 +113,26 @@ export function SiteHeader() {
               </li>
             ))}
           </ul>
-          <div className="mt-12 space-y-3 text-[15px]">
-            <a href={`mailto:${site.email}`} className="block underline underline-offset-4">
-              {site.email}
+          <div className="mt-12 space-y-4 text-[15px]">
+            <a href={`mailto:${site.email}`} className="flex items-center gap-3">
+              <SocialIcon name="email" />
+              <span className="underline underline-offset-4">{site.email}</span>
             </a>
-            <p className="flex flex-wrap gap-x-5 gap-y-1 text-mute">
+            <ul className="flex gap-2">
               {site.socials.map((s) => (
-                <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className="hover:text-ink">
-                  {s.label}
-                </a>
+                <li key={s.label}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${s.label} (${s.handle})`}
+                    className="flex h-11 w-11 items-center justify-center border border-rule text-ink transition-colors hover:border-ink"
+                  >
+                    <SocialIcon name={s.icon} className="h-5 w-5" />
+                  </a>
+                </li>
               ))}
-            </p>
+            </ul>
           </div>
         </nav>
       </div>
