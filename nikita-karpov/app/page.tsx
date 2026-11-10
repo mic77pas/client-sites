@@ -53,49 +53,55 @@ export default function Home() {
   return (
     <LightboxProvider photos={lightboxSet}>
       {/* ---------------------------------------------------------------- intro */}
-      <section className="wrap grid gap-x-(--gutter) gap-y-12 pb-24 pt-8 md:grid-cols-12 md:pb-36 md:pt-14">
-        <div className="flex flex-col justify-between gap-10 md:col-span-5 md:pb-2">
+      {/*
+        Exactly one screen tall (minus the header + its 1px rule) at every size. The photo area is a
+        size container, so each photo's width is the smaller of "its share of the
+        column" and "available height × its aspect ratio" — never cropped, never
+        pushed below the fold. Phones/portrait tablets stack: text, then photos
+        filling whatever height is left.
+      */}
+      <section className="wrap grid h-[calc(100svh-var(--header-h)-1px)] min-h-[520px] grid-rows-[auto_minmax(190px,1fr)] gap-6 pb-6 pt-6 sm:gap-8 sm:pb-8 sm:pt-10 lg:min-h-[560px] lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)] lg:items-center lg:gap-x-(--gutter) lg:py-[clamp(24px,6vh,72px)]">
+        <div className="lg:col-span-5">
           <p className="t-label text-mute">
             Photography <span aria-hidden="true">/</span> Film <span aria-hidden="true">/</span> Edit
           </p>
-          <div>
-            <h1 className="font-serif text-[clamp(2.5rem,4.3vw,4.6rem)] leading-[1.0] tracking-[-0.015em]">
-              <span className="sr-only">{site.name} — </span>
-              Clean, cinematic images of people, places <em className="italic">&amp;&nbsp;the moments between.</em>
-            </h1>
-            <p className="t-lede mt-7 max-w-[34rem] text-ink-2">
-              I&apos;m Nik Karpov, a photographer, videographer and editor in Toronto. Five-plus years of freelance work across
-              portraits, events, sport and brand content — from planning the shoot to the final edit.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-[17px]">
-              <ArrowLink href="/work">See the work</ArrowLink>
-              <ArrowLink href="/contact">Start a project</ArrowLink>
-            </div>
+          <h1 className="mt-5 font-serif text-[clamp(2.25rem,min(4.3vw,7.2vh),4.6rem)] leading-[1.0] tracking-[-0.015em] lg:mt-[clamp(16px,3vh,32px)]">
+            <span className="sr-only">{site.name} — </span>
+            Clean, cinematic images of people, places <em className="italic">&amp;&nbsp;the moments between.</em>
+          </h1>
+          <p className="mt-6 max-w-[34rem] text-[clamp(1rem,min(1.25vw,2.2vh),1.25rem)] leading-[1.55] text-ink-2 lg:mt-[clamp(16px,3.2vh,32px)]">
+            I&apos;m Nik Karpov, a photographer, videographer and editor in Toronto. Five-plus years of freelance work across
+            portraits, events, sport and brand content — from planning the shoot to the final edit.
+          </p>
+          <div className="mt-7 flex flex-wrap gap-x-8 gap-y-3 text-[17px] lg:mt-[clamp(20px,3.6vh,36px)]">
+            <ArrowLink href="/work">See the work</ArrowLink>
+            <ArrowLink href="/contact">Start a project</ArrowLink>
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-x-3 md:col-span-7 md:gap-x-(--gutter)">
-          <figure className="col-span-7">
-            <PhotoTrigger id={hero[0].id} title={hero[0].title}>
-              <Photo photo={hero[0]} preload sizes="(max-width: 768px) 58vw, 34vw" />
-            </PhotoTrigger>
-            <figcaption className="t-label mt-3 text-mute">
-              01 — {hero[0].title}
-            </figcaption>
-          </figure>
-          <figure className="col-span-5 mt-[38%]">
-            <PhotoTrigger id={hero[1].id} title={hero[1].title}>
-              <Photo photo={hero[1]} preload sizes="(max-width: 768px) 42vw, 24vw" />
-            </PhotoTrigger>
-            <figcaption className="t-label mt-3 text-mute">
-              02 — {hero[1].title}
-            </figcaption>
-          </figure>
+        <div className="h-full [container-type:size] lg:col-span-7">
+          <div className="flex h-full items-end justify-center gap-x-3 sm:gap-x-(--gutter) lg:justify-end">
+            <figure style={{ width: `min(58cqw, calc((100cqh - 2rem) * ${(hero[0].width / hero[0].height).toFixed(4)}))` }}>
+              <PhotoTrigger id={hero[0].id} title={hero[0].title}>
+                <Photo photo={hero[0]} preload sizes="(max-width: 1024px) 60vw, 32vw" />
+              </PhotoTrigger>
+              <figcaption className="t-label mt-3 truncate text-mute">01 — {hero[0].title}</figcaption>
+            </figure>
+            <figure
+              className="mb-[12cqh]"
+              style={{ width: `min(38cqw, calc((72cqh - 2rem) * ${(hero[1].width / hero[1].height).toFixed(4)}))` }}
+            >
+              <PhotoTrigger id={hero[1].id} title={hero[1].title}>
+                <Photo photo={hero[1]} preload sizes="(max-width: 1024px) 40vw, 22vw" />
+              </PhotoTrigger>
+              <figcaption className="t-label mt-3 truncate text-mute">02 — {hero[1].title}</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
       {/* -------------------------------------------------------- selected work */}
-      <section aria-labelledby="selected" className="wrap pb-24 md:pb-36">
+      <section aria-labelledby="selected" className="wrap pb-24 pt-16 md:pb-36 md:pt-24">
         <SectionHead
           id="selected"
           label="Selected work"
