@@ -1,3 +1,5 @@
 # Full-resolution originals are inputs to `npm run media`, never served.
-media/
-scripts/
+# Anchored with a leading slash: an unanchored `media/` also matches
+# public/media/ and strips every web photo from the deployment.
+/media/
+/scripts/
