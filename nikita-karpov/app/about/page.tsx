@@ -25,14 +25,11 @@ export default function AboutPage() {
     <>
       <section className="wrap grid gap-x-(--gutter) gap-y-14 pb-24 pt-10 md:grid-cols-12 md:pb-36 md:pt-16">
         <div className="md:col-span-6">
-          <p className="t-label text-mute">About</p>
-          <h1 className="t-display mt-5">
-            Hi, I&apos;m Nik<em className="italic">.</em>
-          </h1>
+          <h1 className="t-display">Hi, I&apos;m Nik.</h1>
           <div className="t-lede mt-10 max-w-xl space-y-5 text-ink-2">
             <p>
               I&apos;m a photographer, videographer and editor based in Toronto. For more than five years I&apos;ve worked
-              freelance, making clean, cinematic images for people and brands who want to look like themselves — only more
+              freelance, making clean, cinematic images for people and brands who want to look like themselves, only more
               considered.
             </p>
             <p>
@@ -72,12 +69,11 @@ export default function AboutPage() {
       </section>
 
       <section aria-labelledby="services" className="wrap pb-24 md:pb-36">
-        <SectionHead id="services" label="Services" title="What I can help with" />
+        <SectionHead id="services" title="What I can help with" />
         <div className="mt-4">
           {services.map((s) => (
-            <div key={s.n} className="grid gap-4 border-b border-rule py-8 md:grid-cols-12 md:gap-(--gutter) md:py-10">
-              <p className="t-label text-mute md:col-span-1 md:pt-2">{s.n}</p>
-              <h3 className="t-h3 md:col-span-4">{s.title}</h3>
+            <div key={s.title} className="grid gap-4 py-8 md:grid-cols-12 md:gap-(--gutter) md:py-10">
+              <h3 className="t-h3 md:col-span-5">{s.title}</h3>
               <p className="text-ink-2 md:col-span-4">{s.text}</p>
               <ul className="text-[15px] text-mute md:col-span-3">
                 {s.items.map((it) => (
@@ -90,11 +86,11 @@ export default function AboutPage() {
       </section>
 
       <section aria-labelledby="kit" className="wrap pb-24 md:pb-36">
-        <div className="grid gap-6 border-t border-rule pt-5 md:grid-cols-12 md:gap-(--gutter)">
+        <div className="grid gap-6 md:grid-cols-12 md:gap-(--gutter)">
           <h2 id="kit" className="t-label text-mute md:col-span-4">
             In the bag
           </h2>
-          <ul className="flex flex-wrap gap-x-8 gap-y-2 font-serif text-[1.6rem] leading-snug md:col-span-8">
+          <ul className="t-wide flex flex-wrap gap-x-8 gap-y-2 text-[1.35rem] leading-snug md:col-span-8">
             {kit.map((k) => (
               <li key={k}>{k}</li>
             ))}

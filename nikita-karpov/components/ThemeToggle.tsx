@@ -1,5 +1,7 @@
 "use client";
 
+import { Moon, Sun } from "lucide-react";
+
 /**
  * Light/dark switch. The current theme is resolved purely in CSS (see the
  * `dark:` variant in globals.css), so the icon is correct on first paint with
@@ -8,7 +10,7 @@
  */
 export const THEME_KEY = "nk-theme";
 
-const COLORS = { light: "#efece6", dark: "#141311" } as const;
+const COLORS = { light: "#f3f3f1", dark: "#121212" } as const;
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
   function toggle() {
@@ -42,26 +44,16 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     >
       <span className="sr-only dark:hidden">Switch to dark mode</span>
       <span className="sr-only hidden dark:inline">Switch to light mode</span>
-      {/* moon (shown in light mode) */}
-      <svg
+      <Moon
         aria-hidden="true"
-        viewBox="0 0 24 24"
-        className="h-[18px] w-[18px] fill-none stroke-current stroke-[1.5] transition-transform duration-500 ease-out-quint group-hover:-rotate-12 dark:hidden"
-      >
-        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" strokeLinejoin="round" />
-      </svg>
-      {/* sun (shown in dark mode) */}
-      <svg
+        strokeWidth={1.5}
+        className="size-[18px] transition-transform duration-500 ease-out-quint group-hover:-rotate-12 dark:hidden"
+      />
+      <Sun
         aria-hidden="true"
-        viewBox="0 0 24 24"
-        className="hidden h-[18px] w-[18px] fill-none stroke-current stroke-[1.5] transition-transform duration-500 ease-out-quint group-hover:rotate-45 dark:block"
-      >
-        <circle cx="12" cy="12" r="4" />
-        <path
-          d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"
-          strokeLinecap="round"
-        />
-      </svg>
+        strokeWidth={1.5}
+        className="hidden size-[18px] transition-transform duration-500 ease-out-quint group-hover:rotate-45 dark:block"
+      />
     </button>
   );
 }

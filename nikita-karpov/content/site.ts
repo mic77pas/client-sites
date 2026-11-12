@@ -21,19 +21,16 @@ export const nav = [
 
 export const services = [
   {
-    n: "01",
     title: "Photography",
     text: "Portraits, events, sport and product. Planned with you beforehand, shot with natural direction, delivered edited and ready to use.",
     items: ["Portraits & couples", "Events & celebrations", "Sport", "Product & jewellery"],
   },
   {
-    n: "02",
     title: "Videography",
-    text: "Short films and content for brands, events and social — from planning the shots to filming on the day.",
+    text: "Short films and content for brands, events and social, from planning the shots to filming on the day.",
     items: ["Brand & promo content", "Event coverage", "Social & short-form"],
   },
   {
-    n: "03",
     title: "Editing & post",
     text: "Cutting, colour and finishing. Footage or photos you already have, shaped into something that feels considered.",
     items: ["Video editing", "Colour grading", "Photo retouching"],

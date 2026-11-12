@@ -49,4 +49,7 @@ next-env.d.ts
 # Remove these two lines if you'd rather version originals in Git LFS.
 /media/photos/**/*
 /media/video/*.mp4
+/media/video/*.mov
 !/media/video/*.json
+# Portfolio hand-offs (zipped exports from Drive etc.): unpack, never commit.
+*.zip

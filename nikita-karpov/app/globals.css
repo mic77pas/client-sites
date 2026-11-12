@@ -3,59 +3,60 @@
 /* ------------------------------------------------------------------ tokens */
 
 /*
- * Palette. Raw values live in plain custom properties so they can flip for
- * dark mode; Tailwind utilities (bg-paper, text-ink, …) point at them.
+ * Palette. Neutral gallery greys rather than warm paper, so nothing tints the
+ * photographs. Raw values live in plain custom properties so they can flip for
+ * dark mode; Tailwind utilities (bg-paper, text-ink, ...) point at them.
  *
  *   paper / paper-2   page + raised surfaces      ink / ink-2 / mute   text
  *   rule              hairlines                   safelight            focus + accents
- *   night*            always-dark bands (film, inquiries, lightbox) — same in both modes
+ *   night*            always-dark bands (film, contact band, lightbox), same in both modes
  *
  * Theme resolution: data-theme="light" | "dark" on <html> (set by the toggle and
  * an inline script in app/layout.tsx); otherwise the OS preference.
  */
 :root {
-  --paper: #efece6;
-  --paper-2: #e5e1d9;
-  --ink: #161513;
-  --ink-2: #34322e;
-  --mute: #625d56;
-  --rule: rgb(22 21 19 / 0.16);
-  --safelight: #b4351e;
-  --night: #0e0d0c;
-  --night-fg: #efece6;
-  --night-mute: #a29d94;
-  --night-rule: rgb(239 236 230 / 0.16);
+  --paper: #f3f3f1;
+  --paper-2: #e7e7e4;
+  --ink: #121212;
+  --ink-2: #383837;
+  --mute: #676765;
+  --rule: rgb(18 18 18 / 0.14);
+  --safelight: #c23a22;
+  --night: #0c0c0c;
+  --night-fg: #ededeb;
+  --night-mute: #9b9b98;
+  --night-rule: rgb(237 237 235 / 0.14);
   color-scheme: light;
 
   --gutter: clamp(16px, 3.2vw, 48px);
   --header-h: 64px;
 }
 
-/* Dark: warm charcoal, not pure black, so photographs keep their contrast. */
+/* Dark: graphite, not pure black, so photographs keep their contrast. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-  --paper: #141311;
-  --paper-2: #201e1b;
-  --ink: #ece8e1;
-  --ink-2: #cdc8bf;
-  --mute: #9c968c;
-  --rule: rgb(236 232 225 / 0.14);
-  --safelight: #e46a4c;
-  --night: #0a0908;
-  --night-rule: rgb(239 236 230 / 0.12);
-  color-scheme: dark;
+    --paper: #121212;
+    --paper-2: #1c1c1c;
+    --ink: #ececea;
+    --ink-2: #c9c9c6;
+    --mute: #979794;
+    --rule: rgb(236 236 234 / 0.13);
+    --safelight: #e8674b;
+    --night: #090909;
+    --night-rule: rgb(237 237 235 / 0.12);
+    color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #141311;
-  --paper-2: #201e1b;
-  --ink: #ece8e1;
-  --ink-2: #cdc8bf;
-  --mute: #9c968c;
-  --rule: rgb(236 232 225 / 0.14);
-  --safelight: #e46a4c;
-  --night: #0a0908;
-  --night-rule: rgb(239 236 230 / 0.12);
+  --paper: #121212;
+  --paper-2: #1c1c1c;
+  --ink: #ececea;
+  --ink-2: #c9c9c6;
+  --mute: #979794;
+  --rule: rgb(236 236 234 / 0.13);
+  --safelight: #e8674b;
+  --night: #090909;
+  --night-rule: rgb(237 237 235 / 0.12);
   color-scheme: dark;
 }
 
@@ -73,21 +74,28 @@
   --color-night-rule: var(--night-rule);
 }
 
+/*
+ * Type: one grotesk (Archivo, variable width + weight) used at three widths,
+ * the way a film title sequence works:
+ *   expanded  (125%)  titles, like a title card or a widescreen frame
+ *   normal    (100%)  reading text
+ *   condensed (78%)   caps for captions and metadata, like a credit roll or a slate
+ */
 @theme {
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* `dark:` variant that follows the same resolution as the palette. */
 @custom-variant dark {
   &:where([data-theme="dark"], [data-theme="dark"] *) {
     @slot;
   }
   @media (prefers-color-scheme: dark) {
-    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) {
+    &:where(
+      :root:not([data-theme="light"]),
+      :root:not([data-theme="light"]) *
+    ) {
       @slot;
     }
   }
@@ -140,37 +148,50 @@
   padding-inline: var(--gutter);
 }
 
-/* Large editorial serif. */
+/* Expanded titles. */
 @utility t-display {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(2.5rem, 5.6vw, 5.75rem);
-  line-height: 0.98;
-  letter-spacing: -0.015em;
+  text-wrap: balance;
+  font-stretch: 125%;
+  font-weight: 500;
+  font-size: clamp(2.25rem, 5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
 }
 
 @utility t-h2 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(2rem, 3.6vw, 3.4rem);
-  line-height: 1.02;
-  letter-spacing: -0.01em;
+  text-wrap: balance;
+  font-stretch: 125%;
+  font-weight: 500;
+  font-size: clamp(1.75rem, 3vw, 2.9rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
 }
 
 @utility t-h3 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
-  line-height: 1.1;
+  text-wrap: balance;
+  font-stretch: 112%;
+  font-weight: 500;
+  font-size: clamp(1.3rem, 1.8vw, 1.65rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
-/* Small mono label — captions, indices, metadata. */
+/* Expanded face at any size (pair with a text-[...] size). */
+@utility t-wide {
+  font-stretch: 125%;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+/* Condensed caps: captions, metadata, form labels. */
 @utility t-label {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-stretch: 78%;
+  font-weight: 550;
+  font-size: 12.5px;
   line-height: 1.4;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
 }
 
 @utility t-lede {
@@ -254,24 +275,68 @@
   }
 }
 
-/* Gentle reveal as figures enter the viewport — CSS only, progressive. */
+/*
+ * Home intro, played on every load (pure CSS, so it starts with the first paint
+ * and needs no JS). Headline words rise out of a mask one after another; the
+ * hero photos open like a curtain lifting while the image settles from a slight
+ * zoom; the supporting text and captions follow. Timing per element comes from
+ * --d (delay) or --i (word index) set in app/page.tsx.
+ *
+ * Fill mode is `backwards` only: elements hold their start state while waiting,
+ * then hand back to normal styles, so hover zoom and parallax keep working.
+ */
+.intro-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Room for descenders and accents without changing the line box. */
+  padding-block: 0.06em 0.14em;
+  margin-block: -0.06em -0.14em;
+}
+.intro-word {
+  display: inline-block;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 40%;
-    }
-    @keyframes reveal {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
+  .intro-word {
+    animation: intro-word 1100ms var(--ease-out-quint) backwards;
+    animation-delay: calc(140ms + var(--i, 0) * 60ms);
+  }
+  .intro-photo {
+    animation: intro-wipe 1400ms cubic-bezier(0.77, 0, 0.175, 1) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+  .intro-photo img {
+    animation: intro-settle 2200ms var(--ease-out-quint) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+  .intro-rise {
+    animation: intro-rise 1000ms var(--ease-out-quint) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+}
+@keyframes intro-word {
+  from {
+    transform: translateY(105%);
+  }
+}
+@keyframes intro-wipe {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes intro-settle {
+  from {
+    transform: scale(1.22);
+  }
+}
+@keyframes intro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
 }
 

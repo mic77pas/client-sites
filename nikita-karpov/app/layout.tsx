@@ -1,19 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const serif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
-  display: "swap",
-});
-const sans = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-hanken", display: "swap" });
-const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono", display: "swap" });
+// Variable width + weight: expanded titles, normal text and condensed captions from one family.
+const archivo = Archivo({ subsets: ["latin"], axes: ["wdth"], variable: "--font-archivo", display: "swap" });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL
@@ -23,7 +16,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: `${site.name} — ${site.role}`, template: `%s — ${site.name}` },
+  title: { default: `${site.name} | ${site.role}`, template: `%s | ${site.name}` },
   description: site.description,
   openGraph: { type: "website", siteName: site.name, locale: "en_CA" },
   twitter: { card: "summary_large_image" },
@@ -31,19 +24,19 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#efece6" },
-    { media: "(prefers-color-scheme: dark)", color: "#141311" },
+    { media: "(prefers-color-scheme: light)", color: "#f3f3f1" },
+    { media: "(prefers-color-scheme: dark)", color: "#121212" },
   ],
 };
 
 // Runs before first paint so a saved light/dark choice never flashes the other theme.
 // The explicit choice gets its own theme-color tag at the top of <head>; browsers use the
 // first matching tag, so it wins over the media-query ones Next renders from `viewport`.
-const themeScript = `try{var t=localStorage.getItem("nk-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var m=document.createElement("meta");m.name="theme-color";m.id="nk-theme-color";m.content=t==="dark"?"#141311":"#efece6";document.head.prepend(m)}}catch(e){}`;
+const themeScript = `try{var t=localStorage.getItem("nk-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var m=document.createElement("meta");m.name="theme-color";m.id="nk-theme-color";m.content=t==="dark"?"#121212":"#f3f3f1";document.head.prepend(m)}}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={archivo.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

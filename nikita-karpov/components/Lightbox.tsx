@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import type { Photo } from "@/lib/media";
-import { exifLine, pad2 } from "@/lib/format";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { exifLine } from "@/lib/format";
 import mediaLoader from "@/lib/image-loader";
 
 type Ctx = { open: (id: string, trigger?: HTMLElement | null) => void };
@@ -98,7 +99,7 @@ export function PhotoTrigger({
       style={style}
     >
       {children}
-      <span className="sr-only">{`${title} — view full screen`}</span>
+      <span className="sr-only">{`${title}, view full screen`}</span>
     </button>
   );
 }
@@ -180,23 +181,29 @@ function Viewer({
   // Height-bound when the viewport is wider than the photo; width-bound otherwise.
   const sizes = `(min-aspect-ratio: ${photo.width}/${photo.height}) calc((100vh - ${CHROME}px) * ${ar.toFixed(3)}), 100vw`;
   const meta = exifLine(photo.exif);
+  const where = [photo.place, photo.exif?.year].filter(Boolean).join(", ");
 
   return (
     <div
       ref={dialogRef}
       role="dialog"
       aria-modal="true"
+      data-lenis-prevent=""
       aria-label={`Photo ${index + 1} of ${n}: ${photo.title}`}
       className="fixed inset-0 z-[100] flex flex-col bg-night text-night-fg"
     >
       {/* top bar */}
       <div className="wrap flex h-14 shrink-0 items-center justify-between">
-        <p className="t-label text-night-mute" aria-live="polite">
-          <span className="text-night-fg">{pad2(index + 1)}</span> / {pad2(n)}
-          <span className="ml-4 hidden sm:inline">{photo.category.title}</span>
-        </p>
-        <button ref={closeRef} type="button" onClick={onClose} className="t-label -mr-2 px-2 py-3 hover:text-white">
-          Close <span aria-hidden="true">✕</span>
+        <p className="t-label text-night-mute">{photo.category.title}</p>
+        <p className="sr-only" aria-live="polite">{`Photo ${index + 1} of ${n}: ${photo.title}`}</p>
+        <button
+          ref={closeRef}
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center text-night-mute transition-colors hover:text-night-fg"
+        >
+          <X aria-hidden="true" strokeWidth={1.5} className="size-6" />
         </button>
       </div>
 
@@ -235,7 +242,11 @@ function Viewer({
           aria-label="Previous photo"
           className="group absolute inset-y-0 left-0 hidden w-1/4 cursor-w-resize items-center justify-start pl-5 md:flex"
         >
-          <span className="t-label text-night-mute transition-colors group-hover:text-night-fg">←</span>
+          <ArrowLeft
+            aria-hidden="true"
+            strokeWidth={1.25}
+            className="size-7 text-night-mute transition-[color,translate] duration-500 ease-out-quint group-hover:-translate-x-1 group-hover:text-night-fg"
+          />
         </button>
         <button
           type="button"
@@ -243,26 +254,29 @@ function Viewer({
           aria-label="Next photo"
           className="group absolute inset-y-0 right-0 hidden w-1/4 cursor-e-resize items-center justify-end pr-5 md:flex"
         >
-          <span className="t-label text-night-mute transition-colors group-hover:text-night-fg">→</span>
+          <ArrowRight
+            aria-hidden="true"
+            strokeWidth={1.25}
+            className="size-7 text-night-mute transition-[color,translate] duration-500 ease-out-quint group-hover:translate-x-1 group-hover:text-night-fg"
+          />
         </button>
       </div>
 
       {/* caption */}
       <div className="wrap flex shrink-0 items-end justify-between gap-6 py-4 md:min-h-[92px] md:py-5">
         <div className="min-w-0">
-          <p className="font-serif text-2xl leading-tight">
+          <p className="t-wide text-[1.4rem] leading-tight">
             {photo.title}
-            {photo.place ? <span className="text-night-mute">, {photo.place}</span> : null}
-            {photo.exif?.year ? <span className="text-night-mute"> — {photo.exif.year}</span> : null}
+            {where ? <span className="text-night-mute">, {where}</span> : null}
           </p>
-          {meta ? <p className="t-label mt-1.5 truncate normal-case tracking-[0.02em] text-night-mute">{meta}</p> : null}
+          {meta ? <p className="t-label mt-2 truncate text-night-mute">{meta}</p> : null}
         </div>
-        <div className="flex shrink-0 gap-1 md:hidden">
-          <button type="button" onClick={prev} aria-label="Previous photo" className="t-label px-3 py-3">
-            ←
+        <div className="-mr-3 flex shrink-0 md:hidden">
+          <button type="button" onClick={prev} aria-label="Previous photo" className="inline-flex h-11 w-11 items-center justify-center">
+            <ArrowLeft aria-hidden="true" strokeWidth={1.5} className="size-5" />
           </button>
-          <button type="button" onClick={next} aria-label="Next photo" className="t-label px-3 py-3">
-            →
+          <button type="button" onClick={next} aria-label="Next photo" className="inline-flex h-11 w-11 items-center justify-center">
+            <ArrowRight aria-hidden="true" strokeWidth={1.5} className="size-5" />
           </button>
         </div>
       </div>

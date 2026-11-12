@@ -31,6 +31,6 @@ export const films: Film[] = [
     kind: "file",
     video: "showreel",
     title: "Showreel",
-    summary: "A short cut of motion work — light, texture and movement.",
+    summary: "A short cut of motion work: light, texture and movement.",
   },
 ];

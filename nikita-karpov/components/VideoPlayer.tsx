@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { Play } from "lucide-react";
 import { formatDuration } from "@/lib/format";
 
 export type VideoSource =
@@ -91,13 +92,12 @@ export function VideoPlayer({ title, source, poster, posterBlur, ratio = 16 / 9,
               className="absolute inset-0 h-full w-full object-cover"
             />
           ) : null}
-          <span className="absolute bottom-0 left-0 flex items-center gap-3 bg-paper px-4 py-3 text-ink">
-            <svg aria-hidden="true" viewBox="0 0 10 12" className="h-3 w-2.5 fill-current">
-              <path d="M0 0 10 6 0 12Z" />
-            </svg>
+          <span className="absolute inset-x-0 bottom-0 flex items-center gap-3 bg-linear-to-t from-black/60 to-transparent px-4 pb-4 pt-16 text-white md:px-5 md:pb-5">
+            <Play aria-hidden="true" strokeWidth={1.5} className="size-[18px] fill-current transition-transform duration-500 ease-out-quint group-hover:scale-110" />
             <span className="t-label">
-              Play {title}
-              {duration ? <span className="ml-3 text-mute">{formatDuration(duration)}</span> : null}
+              <span className="sr-only">Play </span>
+              {title}
+              {duration ? <span className="ml-3 text-white/65">{formatDuration(duration)}</span> : null}
             </span>
           </span>
         </button>

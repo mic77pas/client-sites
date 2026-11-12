@@ -6,7 +6,7 @@ import { getVideo } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Film",
-  description: "Video and editing work by Nik Karpov — brand content, events and short-form.",
+  description: "Video and editing work by Nik Karpov: brand content, events and short-form.",
 };
 
 type Resolved = {
@@ -54,8 +54,7 @@ export default function FilmPage() {
     <>
       <div className="bg-night text-night-fg">
         <header className="wrap pb-12 pt-10 md:pb-16 md:pt-16">
-          <p className="t-label text-night-mute">Film &amp; edit</p>
-          <h1 className="t-display mt-5">Film</h1>
+          <h1 className="t-display">Film</h1>
           <p className="t-lede mt-6 max-w-xl text-night-mute">
             Video for brands, events and social, plus editing and colour for footage you already have.
           </p>
@@ -67,7 +66,7 @@ export default function FilmPage() {
             <div className="mt-5 grid gap-3 md:grid-cols-12 md:gap-(--gutter)">
               <h2 id={`f-${lead.film.id}`} className="t-h3 md:col-span-4">
                 {lead.film.title}
-                {lead.film.year ? <span className="text-night-mute"> — {lead.film.year}</span> : null}
+                {lead.film.year ? <span className="text-night-mute">, {lead.film.year}</span> : null}
               </h2>
               {lead.film.summary ? <p className="text-night-mute md:col-span-5">{lead.film.summary}</p> : null}
               {lead.film.credits?.length ? (
@@ -91,7 +90,7 @@ export default function FilmPage() {
         ) : null}
 
         <div className="wrap pb-20 md:pb-28">
-          <div className="flex flex-col gap-4 border-t border-night-rule pt-6 md:flex-row md:items-baseline md:justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-baseline md:justify-between">
             <p className="max-w-lg text-night-mute">
               Have a video project in mind? Tell me what you&apos;re making and where it will live.
             </p>

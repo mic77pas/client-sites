@@ -1,30 +1,34 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { Category } from "@/lib/media";
-import { pad2 } from "@/lib/format";
 import { Photo } from "./Photo";
 
-/** Editorial index of series: cover, title, blurb, count. */
+/**
+ * Index of series: cover, title, blurb. No dividers: rows are separated by space,
+ * and hovering one dims the others so the row under the pointer stands out.
+ */
 export function SeriesIndex({ categories }: { categories: Category[] }) {
   return (
-    <ul className="border-t border-rule">
-      {categories.map((c, i) => (
-        <li key={c.slug} className="border-b border-rule">
+    <ul className="group/list space-y-3 md:space-y-4">
+      {categories.map((c) => (
+        <li
+          key={c.slug}
+          className="transition-opacity duration-500 ease-out-quint group-has-[a:hover]/list:opacity-35 has-[a:hover]:opacity-100!"
+        >
           <Link
             href={`/work/${c.slug}`}
-            className="group -mx-3 grid grid-cols-[72px_1fr_auto] items-center gap-x-5 px-3 py-4 transition-colors hover:bg-paper-2/70 sm:grid-cols-[96px_minmax(0,3fr)_minmax(0,4fr)_auto] md:gap-x-8 md:py-5"
+            className="group grid grid-cols-[72px_1fr_auto] items-center gap-x-5 py-1 sm:grid-cols-[96px_minmax(0,3fr)_minmax(0,4fr)_auto] md:gap-x-8"
           >
             <Photo photo={c.coverPhoto} ratio={4 / 5} sizes="96px" className="w-full" />
-            <div className="flex items-baseline gap-4">
-              <span className="t-label hidden text-mute md:inline">{pad2(i + 1)}</span>
-              <span className="font-serif text-[1.9rem] leading-none md:text-[2.6rem]">{c.title}</span>
-            </div>
-            <p className="hidden max-w-md text-[15px] leading-snug text-mute sm:block">{c.blurb}</p>
-            <span className="t-label flex items-center gap-3 pr-1 text-mute group-hover:text-ink">
-              {c.photos.length}
-              <span aria-hidden="true" className="transition-transform duration-500 ease-out-quint group-hover:translate-x-1">
-                →
-              </span>
+            <span className="t-wide text-[1.6rem] leading-none transition-transform duration-500 ease-out-quint group-hover:translate-x-1.5 md:text-[2.2rem]">
+              {c.title}
             </span>
+            <p className="hidden max-w-md text-[15px] leading-snug text-mute sm:block">{c.blurb}</p>
+            <ArrowRight
+              aria-hidden="true"
+              strokeWidth={1.5}
+              className="size-5 text-mute transition-[color,translate] duration-500 ease-out-quint group-hover:translate-x-1 group-hover:text-ink"
+            />
           </Link>
         </li>
       ))}

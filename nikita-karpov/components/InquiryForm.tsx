@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { projectTypes, site } from "@/content/site";
 
 /**
@@ -21,7 +22,7 @@ export function InquiryForm() {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const get = (k: string) => String(data.get(k) ?? "").trim();
-    const subject = `${get("type") || "Project"} inquiry — ${get("name")}`;
+    const subject = `${get("type") || "Project"} inquiry from ${get("name")}`;
     const body = [
       `Name: ${get("name")}`,
       `Email: ${get("email")}`,
@@ -104,9 +105,11 @@ export function InquiryForm() {
           className="group inline-flex items-center justify-between gap-6 bg-ink px-6 py-4 text-[15px] text-paper transition-colors hover:bg-ink-2"
         >
           Send inquiry
-          <span aria-hidden="true" className="transition-transform duration-500 ease-out-quint group-hover:translate-x-1">
-            →
-          </span>
+          <ArrowRight
+            aria-hidden="true"
+            strokeWidth={1.5}
+            className="size-[18px] transition-transform duration-500 ease-out-quint group-hover:translate-x-1"
+          />
         </button>
         <p className="text-[13px] leading-snug text-mute sm:max-w-[16rem]">Opens your email app with the details filled in.</p>
       </div>
