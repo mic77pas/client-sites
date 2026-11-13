@@ -14,6 +14,7 @@ npm run media    # process photos/video after adding or changing originals
 ```
 app/                  routes: / · /work · /work/[series] · /film · /about · /contact
 components/           UI (Lightbox, JustifiedGallery, VideoPlayer, InquiryForm, …)
+  kit/                3D gear models for the About page, built in code with three.js (no model files)
 content/
   portfolio.ts        ← edit: series names/order, photo titles + alt text, homepage picks
   films.ts            ← edit: film list (local file, YouTube or Vimeo)

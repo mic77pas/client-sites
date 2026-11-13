@@ -32,7 +32,9 @@ export const viewport: Viewport = {
 // Runs before first paint so a saved light/dark choice never flashes the other theme.
 // The explicit choice gets its own theme-color tag at the top of <head>; browsers use the
 // first matching tag, so it wins over the media-query ones Next renders from `viewport`.
-const themeScript = `try{var t=localStorage.getItem("nk-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var m=document.createElement("meta");m.name="theme-color";m.id="nk-theme-color";m.content=t==="dark"?"#121212":"#f3f3f1";document.head.prepend(m)}}catch(e){}`;
+// It also marks <html class="js">, which scroll reveals key off (see .reveal in globals.css)
+// so content is only ever held back when the script that reveals it will run.
+const themeScript = `document.documentElement.classList.add("js");try{var t=localStorage.getItem("nk-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var m=document.createElement("meta");m.name="theme-color";m.id="nk-theme-color";m.content=t==="dark"?"#121212":"#f3f3f1";document.head.prepend(m)}}catch(e){}`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

@@ -163,8 +163,8 @@ export default function Home() {
 
       {/* ----------------------------------------------------------------- film */}
       {reel ? (
-        <section aria-labelledby="film" className="bg-night text-night-fg">
-          <div className="wrap grid gap-10 py-20 md:grid-cols-12 md:gap-x-(--gutter) md:py-28">
+        <section aria-labelledby="film" className="night-fade text-night-fg">
+          <div className="wrap grid gap-10 py-[calc(var(--fade)+3rem)] md:grid-cols-12 md:gap-x-(--gutter)">
             <div className="flex flex-col justify-between gap-8 md:col-span-4" data-speed="0.06">
               <h2 id="film" className="t-h2">
                 Motion, cut and coloured in-house.

@@ -53,3 +53,10 @@ next-env.d.ts
 !/media/video/*.json
 # Portfolio hand-offs (zipped exports from Drive etc.): unpack, never commit.
 *.zip
+# Loose source video exports at the project root (process them via media/video instead).
+/*.mp4
+# nk-mark generator intermediates
+/scripts/nk-mark/*.npy
+/scripts/nk-mark/*.json
+/scripts/nk-mark/*.png
+/scripts/nk-mark/*.txt

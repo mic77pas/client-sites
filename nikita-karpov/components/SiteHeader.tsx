@@ -2,12 +2,28 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { Menu, X } from "lucide-react";
 import { nav, site } from "@/content/site";
 import { Mark } from "./Mark";
 import { SocialIcon } from "./SocialIcon";
 import { ThemeToggle } from "./ThemeToggle";
+
+/**
+ * First-load entrance: the child rises out of a mask, like the home headline
+ * words (.intro-mask / .intro-word in globals.css). `i` staggers it 60ms per step
+ * after 140ms. The header stays mounted across client navigation, so this plays
+ * once per page load.
+ */
+function Rise({ i, children, className = "" }: { i: number; children: ReactNode; className?: string }) {
+  return (
+    <span className={`intro-mask ${className}`}>
+      <span className="intro-word" style={{ "--i": i } as CSSProperties}>
+        {children}
+      </span>
+    </span>
+  );
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -57,44 +73,54 @@ export function SiteHeader() {
     >
       <div className="wrap flex h-(--header-h) items-center justify-between">
         <Link href="/" className="group flex items-center gap-3" aria-label={`${site.name}, home`}>
-          <Mark className="w-10 text-ink transition-transform duration-500 ease-out-quint group-hover:-rotate-6" />
-          <span className="text-[15px] font-medium tracking-tight">{site.name}</span>
+          <Mark draw className="w-10 text-ink transition-transform duration-500 ease-out-quint group-hover:-rotate-6" />
+          <Rise i={2} className="text-[15px] font-medium tracking-tight">
+            {site.name}
+          </Rise>
         </Link>
 
         <nav aria-label="Main" className="hidden md:flex md:items-center md:gap-9">
           <ul className="flex items-center gap-9 text-[15px]">
-            {nav.map((item) => (
+            {nav.map((item, i) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  className="link-line py-1"
-                >
-                  {item.label}
-                </Link>
+                <Rise i={4 + i}>
+                  <Link
+                    href={item.href}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                    className="link-line py-1"
+                  >
+                    {item.label}
+                  </Link>
+                </Rise>
               </li>
             ))}
           </ul>
-          <ThemeToggle />
+          <Rise i={4 + nav.length}>
+            <ThemeToggle />
+          </Rise>
         </nav>
 
         <div className="flex items-center gap-3 md:hidden">
-          <ThemeToggle />
-          <button
-            ref={toggleRef}
-            type="button"
-            className="-mr-2 inline-flex h-10 w-10 items-center justify-center"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen((o) => !o)}
-          >
-            {open ? (
-              <X aria-hidden="true" strokeWidth={1.5} className="size-[22px]" />
-            ) : (
-              <Menu aria-hidden="true" strokeWidth={1.5} className="size-[22px]" />
-            )}
-          </button>
+          <Rise i={4}>
+            <ThemeToggle />
+          </Rise>
+          <Rise i={5}>
+            <button
+              ref={toggleRef}
+              type="button"
+              className="-mr-2 inline-flex h-10 w-10 items-center justify-center"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen((o) => !o)}
+            >
+              {open ? (
+                <X aria-hidden="true" strokeWidth={1.5} className="size-[22px]" />
+              ) : (
+                <Menu aria-hidden="true" strokeWidth={1.5} className="size-[22px]" />
+              )}
+            </button>
+          </Rise>
         </div>
       </div>
 

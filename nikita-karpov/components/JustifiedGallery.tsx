@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Photo as PhotoData } from "@/lib/media";
 import { Photo } from "./Photo";
 import { PhotoTrigger } from "./Lightbox";
@@ -50,63 +50,90 @@ function layout(photos: PhotoData[], width: number, target: number, gap: number)
 
 /**
  * Rows that fill the width while every photo keeps its own proportions.
- * Server render uses a CSS flex approximation; after mount the exact layout
- * takes over. Must sit inside a <LightboxProvider> that includes these photos.
+ * Server render uses a CSS flex approximation; on the client the exact layout
+ * is measured before first paint. Both layouts are the same single list with the
+ * same keyed items, so switching between them never re-mounts (and so never
+ * re-flashes) a photo. Tiles fade up in a short cascade as they scroll into view.
+ * Must sit inside a <LightboxProvider> that includes these photos.
  */
 export function JustifiedGallery({ photos, eager = 0 }: { photos: PhotoData[]; eager?: number }) {
   const ref = useRef<HTMLDivElement>(null);
+  const list = useRef<HTMLUListElement>(null);
   const [box, setBox] = useState<{ width: number; vw: number } | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => {
-      const width = Math.floor(entry.contentRect.width);
+    const update = (w: number) => {
+      const width = Math.floor(w);
       setBox((b) => (b && b.width === width ? b : { width, vw: window.innerWidth }));
-    });
+    };
+    update(el.clientWidth); // synchronous, so client navigations paint the exact layout first
+    const ro = new ResizeObserver(([entry]) => update(entry.contentRect.width));
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
 
-  const item = (p: PhotoData, i: number, style: React.CSSProperties, sizes: string) => (
-    <li key={p.id} style={style}>
-      <PhotoTrigger id={p.id} title={p.title}>
-        <Photo photo={p} preload={i < eager} sizes={sizes} />
-      </PhotoTrigger>
-    </li>
-  );
-
-  if (!box || box.width === 0) {
-    return (
-      <div ref={ref}>
-        <ul className="justified" role="list">
-          {photos.map((p, i) => {
-            const ar = p.width / p.height;
-            return item(
-              p,
-              i,
-              { "--ar": ar.toFixed(4) } as React.CSSProperties,
-              `(max-width: 640px) ${Math.min(100, Math.round(ar * 55))}vw, ${Math.round(ar * 400)}px`,
-            );
-          })}
-        </ul>
-      </div>
+  // Reveal: tiles start hidden (CSS, only when JS runs and motion is allowed) and
+  // are marked in as they cross into view; each batch is staggered left to right.
+  useEffect(() => {
+    const ul = list.current;
+    if (!ul) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        let n = 0;
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const el = e.target as HTMLElement;
+          el.style.setProperty("--d", `${Math.min(n++, 8) * 70}ms`);
+          el.dataset.in = "";
+          io.unobserve(el);
+        }
+      },
+      { rootMargin: "0px 0px -6% 0px" },
     );
+    ul.querySelectorAll<HTMLElement>(":scope > .tile:not([data-in])").forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [photos]);
+
+  const exact = box && box.width > 0 ? box : null;
+  const gap = exact ? gapFor(exact.vw) : 0;
+  const widths = new Map<string, number>();
+  if (exact) {
+    for (const row of layout(photos, exact.width, targetRowHeight(exact.vw), gap)) {
+      for (const p of row.items) widths.set(p.id, (p.width / p.height) * row.height);
+    }
   }
 
-  const gap = gapFor(box.vw);
-  const rows = layout(photos, box.width, targetRowHeight(box.vw), gap);
-  let n = 0;
   return (
-    <div ref={ref} className="flex flex-col" style={{ gap }}>
-      {rows.map((row, r) => (
-        <ul key={r} role="list" className="flex" style={{ gap }}>
-          {row.items.map((p) => {
-            const w = (p.width / p.height) * row.height;
-            return item(p, n++, { width: w, flex: "none" }, `${Math.ceil(w)}px`);
-          })}
-        </ul>
-      ))}
+    <div ref={ref}>
+      <ul
+        ref={list}
+        role="list"
+        className={exact ? "flex flex-wrap" : "justified"}
+        style={exact ? { gap } : undefined}
+      >
+        {photos.map((p, i) => {
+          const ar = p.width / p.height;
+          const w = widths.get(p.id);
+          // Each width is trimmed by a hair so rounding can never push the last
+          // photo of a row onto the next line; the next row's first photo never fits
+          // in what's left, so rows break exactly where the layout put them.
+          const style: React.CSSProperties =
+            w !== undefined ? { width: w - 0.05, flex: "none" } : ({ "--ar": ar.toFixed(4) } as React.CSSProperties);
+          const sizes =
+            w !== undefined
+              ? `${Math.ceil(w)}px`
+              : `(max-width: 640px) ${Math.min(100, Math.round(ar * 55))}vw, ${Math.round(ar * 400)}px`;
+          return (
+            <li key={p.id} className="tile" style={style}>
+              <PhotoTrigger id={p.id} title={p.title}>
+                <Photo photo={p} preload={i < eager} sizes={sizes} />
+              </PhotoTrigger>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

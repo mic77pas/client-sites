@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLink } from "@/components/ArrowLink";
-import { CategoryNav } from "@/components/CategoryNav";
 import { ContactBand } from "@/components/ContactBand";
 import { JustifiedGallery } from "@/components/JustifiedGallery";
 import { LightboxProvider } from "@/components/Lightbox";
@@ -35,14 +34,6 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <LightboxProvider photos={c.photos} syncUrl>
-      <header className="wrap pb-8 pt-10 md:pt-16">
-        <h1 className="t-display">{c.title}</h1>
-        {c.blurb ? <p className="t-lede mt-6 max-w-xl text-ink-2">{c.blurb}</p> : null}
-        <div className="mt-10">
-          <CategoryNav categories={categories} active={c.slug} />
-        </div>
-      </header>
-
       <div className="wrap pb-20 pt-6">
         <JustifiedGallery photos={c.photos} eager={3} />
       </div>

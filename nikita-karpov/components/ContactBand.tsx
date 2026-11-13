@@ -1,14 +1,17 @@
 import { site } from "@/content/site";
 import { ArrowLink } from "./ArrowLink";
+import { Reveal } from "./Reveal";
 
 export function ContactBand() {
   return (
     <section aria-labelledby="contact-band" className="bg-night text-night-fg">
       <div className="wrap grid gap-10 py-20 md:grid-cols-12 md:py-28">
-        <h2 id="contact-band" className="t-display md:col-span-7">
-          Have something in mind?
-        </h2>
-        <div className="flex flex-col justify-end gap-6 md:col-span-5">
+        <Reveal from="left" className="md:col-span-7">
+          <h2 id="contact-band" className="t-display">
+            Have something in mind?
+          </h2>
+        </Reveal>
+        <Reveal from="right" delay={120} className="flex flex-col justify-end gap-6 md:col-span-5">
           <p className="t-lede max-w-md text-night-mute">
             Portraits, an event, a product launch or footage that needs an edit. Tell me about it and we&apos;ll work out the
             rest.
@@ -19,7 +22,7 @@ export function ContactBand() {
               {site.email}
             </a>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
